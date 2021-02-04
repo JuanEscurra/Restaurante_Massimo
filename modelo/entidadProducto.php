@@ -27,6 +27,7 @@
         /* ###### AND estado = 1*/
         public function listarProductosPorTipo($tipo){
             $consulta = "SELECT * FROM producto WHERE tipo = '$tipo'";
+            var_dump($consulta);
             $resultado = mysqli_query($this->getConexion(),$consulta);
             $entradas = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
             return $entradas;

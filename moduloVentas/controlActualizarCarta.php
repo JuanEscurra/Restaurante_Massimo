@@ -1,7 +1,7 @@
 <?php
 include_once('../modelo/entidadProducto.php');
 class actualizarCarta{
-    public function listarCarta($idrol){
+    public function listarCarta(){
         include_once('formListarCarta.php');
         $objProducto = new entidadProducto;
         $objFormCarta = new formlistarCarta;
@@ -22,6 +22,7 @@ class actualizarCarta{
         $this->listarProductos();
 
     }
+    
     public function listarProductosPorTipo($tipo) {
         include_once('formActualizandoCarta.php');
         $objProducto = new entidadProducto;

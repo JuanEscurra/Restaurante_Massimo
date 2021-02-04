@@ -26,7 +26,7 @@
                     </script>
                 </p>
                 <div class="div-col">
-                    <?php 
+                    <?php
                         var_dump($productos);
                     ?>
                 </div>
