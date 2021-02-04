@@ -66,9 +66,12 @@ class controlComanda
     //     $this -> AgregarComanda();
     // }
     public function AgregarComanda(){
+        include_once("../modelo/entidadProducto.php");
         include_once("../moduloVentas/formAgregarComanda.php");
+        $producto= new entidadProducto;
         $formulario = new formAgregarComanda;
-        $formulario->formAgregarComandaShow();
+        $listaProductos =$producto->listarProductos();
+        $formulario->formAgregarComandaShow($listaProductos);
     }/////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////
     //////////////////////////////////////////////

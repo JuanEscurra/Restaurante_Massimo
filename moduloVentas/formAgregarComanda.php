@@ -1,7 +1,7 @@
 <?php
 class formAgregarComanda
 {
-    public function formAgregarComandaShow()
+    public function formAgregarComandaShow($lista)
     {
 ?>
     <!DOCTYPE html>
@@ -21,13 +21,21 @@ class formAgregarComanda
 
             <div class="div-header">
                 <img src="../img/logo_header.png" height="100" width="230">
+
             </div>
-            
+                            
+            </body>
             <h1 class="titulo">Numero de mesa</h1>
             <div class="form-div">
                 
                 <form action="../moduloVentas/getComanda.php" method="post">
-                    <input class="input" type="text" name="nombreProducto" required>
+                    <select class="input"  name="nombreProducto" >
+                            <?php  
+                            foreach ($lista as $value) { ?>
+                                <option  value="<?php echo $value['nombre'] ?>"><?php echo $value['nombre'] ?></option> 
+                            <?php } ?>
+                            </select> 
+
                     <input  class="agregar" type="submit" name="btnBuscarProducto" value="Buscar">
                     
                 </form>
@@ -77,12 +85,17 @@ class formAgregarComanda
                     ?>
                 </tbody>
             </table><form action="../moduloVentas/getComanda.php" method="post">
-                        <input class='agregar' type="submit" name="btnEmitirComanda" value="Atras">
+                        <input class='agregar' type="submit" name="btnEmitirComanda" value="Agregar">
                 </form>
             
-            </body>
         <?php
         }
+        ?>
+        <br>
+        <form action="getComanda.php" method="POST">
+            <input  class="volver" type="submit" name="btnEmitirComanda" value="Atras">
+        </form>
+    <?php
     }
     public function formDetalleComandaShow($listarDetalleComanda, $listaComandas)
     {

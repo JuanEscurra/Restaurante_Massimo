@@ -65,6 +65,7 @@
                 <form action="../moduloSeguridad/getUsuario.php" method="POST">
                     <input  class="volver" type="submit" name="btnInicio" value="Atras">
                 </form>
+                
             </body>
             </html>
             <?php
