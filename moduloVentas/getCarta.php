@@ -4,7 +4,7 @@ include_once('controlActualizarCarta.php');
 if(isset($_POST['bntActualizar']) or isset($_POST['btnRegresarEstado'])){
     $objCarta = new actualizarCarta;
     session_start();
-    $objCarta->listarCarta($_SESSION["rol"]);
+    $objCarta->listarCarta();
 } elseif(isset($_POST['btnAActualizar'])){
     $objActualizar = new actualizarCarta;
     $objActualizar->listarProductos();

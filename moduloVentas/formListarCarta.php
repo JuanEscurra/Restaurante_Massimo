@@ -1,6 +1,6 @@
 <?php
     class formListarCarta{
-        public function formListarCartaShow($entradas,$sopas,$segundos,$bebidas,$gaseosas,$idrol){
+        public function formListarCartaShow($productos){
             ?>
             <!DOCTYPE html>
             <html lang="es">
@@ -26,38 +26,9 @@
                     </script>
                 </p>
                 <div class="div-col">
-                <?php
-                    echo '<div>';
-                    echo '<h3>Entradas</h3>';
-                    for($e=0;$e<count($entradas);$e++){
-                        echo '<p>'.$entradas[$e]['nombre'].'</p>';
-                    }
-                    echo'</div>';
-                    echo '<div>';
-                    echo '<h3>Sopas</h3>';
-                    for($s=0;$s<count($sopas);$s++){
-                        echo '<p>'.$sopas[$s]['nombre'].'</p>';
-                    }
-                    echo'</div>';
-                    echo '<div>';
-                    echo '<h3>Plato Principal</h3>';
-                    for($p=0;$p<count($segundos);$p++){
-                        echo '<p>'.$segundos[$p]['nombre'].'</p>';
-                    }
-                    echo'</div>';
-                    echo '<div>';
-                    echo '<h3>Bebidas</h3>';
-                    for($b=0;$b<count($bebidas);$b++){
-                        echo '<p>'.$bebidas[$b]['nombre'].'</p>';
-                    }
-                    echo'</div>';
-                    echo '<div>';
-                    echo '<h3>Gaseosas</h3>';
-                    for($g=0;$g<count($gaseosas);$g++){
-                        echo '<p>'.$gaseosas[$g]['nombre'].'</p>';
-                    }
-                    echo'</div>';
-                ?>
+                    <?php
+                        var_dump($productos);
+                    ?>
                 </div>
                 <form action="getCarta.php" method="POST">
                     <input class="agregar" type="submit" value="Actualizar" name="btnAActualizar">
