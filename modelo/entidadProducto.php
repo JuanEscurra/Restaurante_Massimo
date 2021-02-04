@@ -2,18 +2,23 @@
     include_once("conexion.php");
     class entidadProducto extends Conexion{
         public function listarProductosPorNombre($nombreProducto){
-            $queryProductos = "SELECT * from producto where nombre LIKE '$nombreProducto%' AND estado= 1" ;
-            $resultado = mysqli_query($this->getConexion(),$queryProductos);
-            $this->cerrarConexion();
-            $resultados = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
-            return $resultados;
+            $queryProducto = "SELECT * from producto where nombre ='$nombreProducto' AND estado= 1";
+            $conexion= new conexion;
+            $resultado = mysqli_query($conexion->getConexion(),$queryProducto);
+            $conexion->cerrarConexion();
+            $producto = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+            
+             return $producto;
+            
         }
 
         public function buscarProductoPorId($idProducto) {
-            $queryProducto = "SELECT * from producto where idproducto=$idProducto";
-            $resultado = mysqli_query($this->getConexion(),$queryProducto);
-            $this->cerrarConexion();
+            $queryProducto = "SELECT * from producto where idProducto =$idProducto";
+            $conexion= new conexion;
+            $resultado = mysqli_query($conexion->getConexion(),$queryProducto);
+            $conexion->cerrarConexion();
             $producto = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+            
             return $producto;
         }
         
@@ -57,11 +62,14 @@
         }
 
         /* ###### */
+
         public function listarProductos(){
-            $consulta = "SELECT * FROM producto";
-            $resultado = mysqli_query($this->getConexion(),$consulta);
-            $productos = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
-            return $productos;
+            $queryProducto = "SELECT * from producto where estado = 1";
+            $conexion= new conexion;
+            $resultado = mysqli_query($conexion->getConexion(),$queryProducto);
+            $conexion->cerrarConexion();
+            $producto = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+             return $producto;
         }
 
         public function cambiarEstado($id,$estado){

@@ -1,6 +1,13 @@
 <?php
 class controlComanda
-{
+{   public function AgregarComanda(){
+        include_once("../modelo/entidadProducto.php");
+        include_once("../moduloVentas/formAgregarComanda.php");
+        $producto= new entidadProducto;
+        $formulario = new formAgregarComanda;
+        $listaProductos =$producto->listarProductos();
+        $formulario->formAgregarComandaShow($listaProductos);
+    }
     public function listarComandaPorEstado()
     {
         include_once("../modelo/entidadComanda.php");
@@ -9,18 +16,54 @@ class controlComanda
         include_once("../moduloVentas/formEmitirComanda.php");
         $formEmitirComandar = new formEmitirComanda;
         $formEmitirComandar->formEmitirComandaShow($listaComandas);
-    }
-
-    public function BuscarProducto($nombreProducto)
+    }public function buscarStock($id)
     {
         include_once("../modelo/entidadProducto.php");
-        $entidadProducto = new entidadProducto;
-        $listaProductos = $entidadProducto->listarProductosPorNombre($nombreProducto);
-        include_once("../moduloVentas/formAgregarProducto.php");
-        $formulario = new formAgregarProducto;
-        $formulario->formAgregarProductoShow($listaProductos);
+        include_once("../moduloVentas/formAgregarComanda.php");
+        $producto= new entidadProducto;
+        $formulario = new formAgregarComanda;
+        $listaProductos =$producto->listarProductos();
+        
+        //////////////////
+        
+        $Prod = $producto->buscarProductoPorId($id);
+        
+        $_SESSION['stock'] =$Prod[0]['stock'];
+       
+        $_SESSION['nombre'] =$Prod[0]['nombre'];
+        $formulario->formAgregarComandaShow($listaProductos);
     }
 
+    public function ARGProducto($nombreProducto,$cantidadProducto)
+    {   
+        include_once("../modelo/entidadProducto.php");
+        include_once("../moduloVentas/formAgregarComanda.php");
+        $producto= new entidadProducto;
+        $formulario = new formAgregarComanda;
+        $listaProducto =$producto->listarProductos();
+        
+        $Prod=$producto->listarProductosPorNombre($nombreProducto);
+                
+        $_SESSION['stock'] =$Prod[0]['stock'];
+       
+        $_SESSION['nombre'] =$Prod[0]['nombre'];
+        
+        
+        $arrayproductos = array("idProducto" => $Prod[0]['idProducto'], "nombre" => $Prod[0]['nombre'], "cantidad" => $cantidadProducto, "precio"=> $Prod[0]['precio']);
+        if (empty($_SESSION["listaProductos"])) {
+        $i = 0;
+        $_SESSION["listaProductos"][$i] = $arrayproductos;
+        } else {
+        $i = count($_SESSION["listaProductos"]);
+        $i++;
+        $_SESSION["listaProductos"][$i] = $arrayproductos;
+        }
+        $formulario->formAgregarComandaShow($listaProducto);
+        
+       
+       
+        
+    }
     public function  detalleComanda($idComanda)
     {
         include_once("../modelo/entidadComanda.php");
@@ -65,14 +108,7 @@ class controlComanda
     //     array_splice($entrada, $filaProducto);
     //     $this -> AgregarComanda();
     // }
-    public function AgregarComanda(){
-        include_once("../modelo/entidadProducto.php");
-        include_once("../moduloVentas/formAgregarComanda.php");
-        $producto= new entidadProducto;
-        $formulario = new formAgregarComanda;
-        $listaProductos =$producto->listarProductos();
-        $formulario->formAgregarComandaShow($listaProductos);
-    }/////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////
     //////////////////////////////////////////////
     public function  EliminarComanda($idComanda)

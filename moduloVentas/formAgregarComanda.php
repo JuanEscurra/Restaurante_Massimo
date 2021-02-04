@@ -1,4 +1,5 @@
 <?php
+
 class formAgregarComanda
 {
     public function formAgregarComandaShow($lista)
@@ -28,15 +29,23 @@ class formAgregarComanda
             <h1 class="titulo">Numero de mesa</h1>
             <div class="form-div">
                 
+                
                 <form action="../moduloVentas/getComanda.php" method="post">
-                    <select class="input"  name="nombreProducto" >
+                        <select class="input"  name="idProducto" onchange="this.form.submit()">
+                            <option ><?php echo $_SESSION['nombre'] ?></option>
                             <?php  
                             foreach ($lista as $value) { ?>
-                                <option  value="<?php echo $value['nombre'] ?>"><?php echo $value['nombre'] ?></option> 
+                            <option  value="<?php echo $value['idProducto'] ?>"><?php echo $value['nombre'] ?></option> 
                             <?php } ?>
-                            </select> 
+                        </select> 
+                        <select class="input"  name="CantidadProducto" >
+                            <?php  $i=1;
+                            for($i;$i<=$_SESSION['stock'];$i++) { ?>
+                                <option  value="<?php echo $i?>"><?php echo $i ?></option> 
+                            <?php } ?>
+                        </select>
 
-                    <input  class="agregar" type="submit" name="btnBuscarProducto" value="Buscar">
+                    <input  class="agregar" type="submit" name="btnARGProducto" value="Agregar">
                     
                 </form>
 
@@ -53,7 +62,7 @@ class formAgregarComanda
         if (!isset($_SESSION)) {
             session_start();
         }
-        if (isset($_SESSION['listaProductos'])) {
+        if (isset($_SESSION["listaProductos"])) {
         ?>
             <table class="table table-hover">
                 <thead>
@@ -73,7 +82,7 @@ class formAgregarComanda
                         echo "<tr>
                                                     <form action=../moduloVentas/getComanda.php?idProducto=$productos[idProducto] method=post>
                                                     <input type=text value=$productos[idProducto] readonly hidden name=idProducto>
-                                                    <td>" . $productos['idProducto'] . "</td>
+                                                    <td>" . $productos['nombre'] . "</td>
                                                     <td>" . $productos['cantidad'] . "</td>
                                                     <td>" . $productos['precio'] . "</td>
                                                     <td><input class='buscar' type=submit name=btnEliminarProducto value=Eliminar></td>

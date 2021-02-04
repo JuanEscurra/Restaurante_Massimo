@@ -1,9 +1,13 @@
 <?php
 session_start();
-$accion = "";
-if (isset($_GET['accion'])) {
-    $accion = $_GET['accion'];
+if(isset($_POST['accion'])){
+
+}else{
+    $_POST['accion'] = "";
 }
+
+
+
 if (isset($_POST['btnEmitirComanda'])) {
     include_once("controlComanda.php");
     $nuevoControl = new controlComanda;
@@ -12,19 +16,34 @@ if (isset($_POST['btnEmitirComanda'])) {
     include_once("controlComanda.php");
     $nuevoControl = new controlComanda;
     $nuevoControl->AgregarComanda();
-} 
-elseif (isset($_POST['btnBuscarProducto'])) {
+} /////////////bien
+
+elseif (isset($_POST['btnARGProducto'])) {
     include_once("controlComanda.php");
     $nuevoControl = new controlComanda;
-    $nuevoControl->BuscarProducto($_POST['nombreProducto']);
-
     
+    $nuevoControl->ARGProducto($_POST['idProducto'],$_POST['CantidadProducto']);
+
+
+//rodolfo 
 } elseif (isset($_POST['btnCrearComanda'])) {
     include_once("controlComanda.php");
     $nuevoControl = new controlComanda;
     $nuevoControl->CrearComanda($_POST['NumeroComanda'],$_POST['NumeroMesa'], $_POST['cliente'], $_SESSION['listaProductos']);
+    
 
-} elseif (isset($_POST['btnAgregarProducto'])) {
+}     elseif (isset($_POST['btnEliminarProducto'])) {
+    $filaProductos = $_POST['filaProductos'];
+    array_splice($_SESSION['listaProductos'], $filaProductos,1);
+    include_once("controlComanda.php");
+    $nuevoControl = new controlComanda;
+    $nuevoControl->AgregarComanda();
+}elseif (isset($_POST['idProducto'])) {
+    include_once("controlComanda.php");
+    $nuevoControl = new controlComanda;
+    $nuevoControl->buscarStock($_POST['idProducto']);
+}/*
+elseif (isset($_POST['btnAgregarProducto'])) {
     $productos = array("idProducto" => $_POST['idProducto'], "cantidad" => $_POST['cantidadProducto'], "precio"=> $_POST['precio']);
     if (empty($_SESSION["listaProductos"])) {
         $i = 0;
@@ -38,7 +57,7 @@ elseif (isset($_POST['btnBuscarProducto'])) {
     $formulario = new formAgregarComanda;
     $formulario->formAgregarComandaShow();
 
-} elseif (isset($_POST['btnModificarComanda'])) {
+}*/ elseif (isset($_POST['btnModificarComanda'])) {
     include_once("controlComanda.php");
     $nuevoControl = new controlComanda;
     $nuevoControl->detalleComanda($_POST['idComanda']);
@@ -49,13 +68,7 @@ elseif (isset($_POST['btnEliminarComanda'])) {
     $nuevoControl = new controlComanda;
     $nuevoControl->EliminarComanda($idComanda);
     }
-    elseif (isset($_POST['btnEliminarProducto'])) {
-    $filaProductos = $_POST['filaProductos'];
-    array_splice($_SESSION['listaProductos'], $filaProductos,1);
-    include_once("controlComanda.php");
-    $nuevoControl = new controlComanda;
-    $nuevoControl->AgregarComanda();
-}
+
 /*elseif (isset($_POST['btnAgregarComandaActualizada'])) {
     $nombreProducto=$_POST[''];
     include_once("controlComanda.php");
