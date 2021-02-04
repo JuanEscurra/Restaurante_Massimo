@@ -18,6 +18,9 @@
                      <img src="../img/logo_header.png" height="100" width="230">
                 </div>
                 <h1 class="titulo">Actualizando Carta del dia</h1>
+                <form action="getCarta.php" method="POST">
+                    <input class="volver" type="submit" value="Regresar" name="btnRegresarEstado">
+                </form>
                 <form action="getCarta.php">
                     Buscar por tipo de producto: 
                     <select name="tipoProducto" onchange="this.form.submit()">
@@ -65,12 +68,7 @@
                         ?>
 
                     </tbody>
-                </table>
-
-
-                <form action="getCarta.php" method="POST">
-                    <input class="volver" type="submit" value="Regresar" name="btnRegresarEstado">
-                </form>    
+                </table> 
             </body>
             </html>
             <?php
