@@ -38,13 +38,19 @@ class actualizarCarta{
         $this->listarProductos();
     }
 
-    public function buscarProducto($nombre) {
+    public function buscarProducto($nombre) {   
         include_once('formActualizandoCarta.php');
         $objProducto = new entidadProducto;
         $formActualizando = new formActualizarCarta;
 
         $productos = $objProducto->buscarProductosPorNombre($nombre);
         $formActualizando->formActualizandoCartaShow($productos); 
+    }
+
+    public function reiniciarCarta() {
+        $objProducto = new entidadProducto;
+        $objProducto->deshabilitarProductos();
+        $this->listarProductos();
     }
 }
 ?>

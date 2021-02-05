@@ -88,56 +88,69 @@
                 <form action="getCarta.php" method="POST">
                     <input type="submit" name="bntActualizar" value="Atras" class="volver">
                 </form>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Tipo</th>
-                            <th>Precio</th>
-                            <th>Stock</th>
-                            <th>Estado</th>
-                            <th>Detalle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($productos as $producto) {
-                            echo "<form action='getCarta.php' method='POST'>
-                            <tr>";
-                                echo "<input name='idProducto' value='$producto[idProducto]' hidden>";
-                                echo"<td> $producto[idProducto]</td>";
-                                echo "<td><input name='nombre' value='$producto[nombre]'></td>";
-                                ?>
-                                <td>
-                                    <select type='text' name='tipo' required>
-                                        <option>Selecione una opción</option>
-                                        <option value='entrada' <?php if($producto['tipo']=="entrada") {echo "selected"; }?>>entrada</option>
-                                        <option value='bebida' <?php if($producto['tipo']=="bebida") {echo "selected"; }?>>bebida</option>
-                                        <option value='gaseosa' <?php if($producto['tipo']=="gaseosa") {echo "selected"; }?>>gaseosa</option>
-                                        <option value='segundo' <?php if($producto['tipo']=="segundo") {echo "selected"; }?>>segundo</option>
-                                        <option value='sopa' <?php if($producto['tipo']=="sopa") {echo "selected"; }?>>sopa</option>
-                                    </select>
-                                </td>
-                                <?php
-                                echo "<td><input type=number name='precio' value='$producto[precio]'></td>";
-                                echo "<td><input type=number name='stock' value='$producto[stock]' min=0></td>";
-                                echo "<td><select name='estado'>";
-                                if($producto['estado'] == '1') {
-                                    echo "<option value='1' selected>Habilitado</option>
-                                    <option value='0'>Deshabilitado</option>"; 
-                                } else {
-                                    echo "<option value='1'>Habilitado</option>
-                                    <option value='0' selected>Deshabilitado</option>"; 
-                                }
-                                echo "</select></td>";
-                                echo "<td><input type='submit' name='btnModificarProducto' value='Modificar'></td>";
-                            echo "</tr></form>";
-                        }
+                <form action="getCarta.php" method="POST">
+                    <input type="submit" name="bntReiniciarCarta" value="Reiniciar carta" class="volver">
+                </form>
+                <?php
+                if(empty($productos) || !isset($productos)) {
+                    ?>
+                        <h2>No se encontro ningun producto</h2>
+                    <?php
+                } else {
+                    ?>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Estado</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($productos as $producto) {
+                                echo "<form action='getCarta.php' method='POST'>
+                                <tr>";
+                                    echo "<input name='idProducto' value='$producto[idProducto]' hidden>";
+                                    echo"<td> $producto[idProducto]</td>";
+                                    echo "<td><input name='nombre' value='$producto[nombre]'></td>";
+                                    ?>
+                                    <td>
+                                        <select type='text' name='tipo' required>
+                                            <option>Selecione una opción</option>
+                                            <option value='entrada' <?php if($producto['tipo']=="entrada") {echo "selected"; }?>>entrada</option>
+                                            <option value='bebida' <?php if($producto['tipo']=="bebida") {echo "selected"; }?>>bebida</option>
+                                            <option value='gaseosa' <?php if($producto['tipo']=="gaseosa") {echo "selected"; }?>>gaseosa</option>
+                                            <option value='segundo' <?php if($producto['tipo']=="segundo") {echo "selected"; }?>>segundo</option>
+                                            <option value='sopa' <?php if($producto['tipo']=="sopa") {echo "selected"; }?>>sopa</option>
+                                        </select>
+                                    </td>
+                                    <?php
+                                    echo "<td><input type=number name='precio' value='$producto[precio]'></td>";
+                                    echo "<td><input type=number name='stock' value='$producto[stock]' min=0></td>";
+                                    echo "<td><select name='estado'>";
+                                    if($producto['estado'] == '1') {
+                                        echo "<option value='1' selected>Habilitado</option>
+                                        <option value='0'>Deshabilitado</option>"; 
+                                    } else {
+                                        echo "<option value='1'>Habilitado</option>
+                                        <option value='0' selected>Deshabilitado</option>"; 
+                                    }
+                                    echo "</select></td>";
+                                    echo "<td><input type='submit' name='btnModificarProducto' value='Modificar'></td>";
+                                echo "</tr></form>";
+                            }
 
-                        ?>
-                    </tbody>
-                </table>
+                            ?>
+                        </tbody>
+                    </table>
+                    <?php
+                }
+                ?>
 
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
             </body>
