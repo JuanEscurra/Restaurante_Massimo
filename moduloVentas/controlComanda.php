@@ -104,9 +104,9 @@ class controlComanda
         $detalleComanda= new entidadDetalleComanda;
         $entidadComanda=new entidadComanda;
         $Prod=$producto->listarProductosPorNombre($nombreProducto);
-        $listarDetalleComanda=$detalleComanda-> listarDetalleComanda($idComanda);
-        $detalleComanda->insertarDetalleComandaA($idComanda,$Prod[0]['idProducto'],$cantidadProducto);
         
+        $detalleComanda->insertarDetalleComandaA($idComanda,$Prod[0]['idProducto'],$cantidadProducto);
+        $listarDetalleComanda=$detalleComanda-> listarDetalleComanda($idComanda);
         $listaComandas = $entidadComanda->buscarComandaPorid($idComanda);
         $listaProducto =$producto->listarProductosActivos();
         $formulario = new formAgregarComanda;
@@ -170,23 +170,28 @@ class controlComanda
     /////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////
     //////////////////////////////////////////////
-    public function  EliminarComanda($idComanda)
+    public function  EliminarDetalleComanda($idDetalleComanda,$idComanda)
     {
         include_once("../modelo/entidadDetalleComanda.php");
+        include_once("../moduloVentas/formAgregarComanda.php");
         include_once("../modelo/entidadComanda.php");
+        include_once("../modelo/entidadProducto.php");
+        
+        
+        
        
-        $entidadComanda = new entidadComanda;
+        $formulario=new formAgregarComanda;
+        $entidadComanda=new entidadComanda;
+        $entidadProducto=new entidadProducto;
+        $detalleComanda= new entidadDetalleComanda;
+        $detalleComanda->EliminarDetalleComanda($idDetalleComanda);
+        $listarDetalleComanda=$detalleComanda->listarDetalleComanda($idComanda);
+        $listaComandas = $entidadComanda->buscarComandaPorid($idComanda);
+        $lista =$entidadProducto->listarProductosActivos();
        
-        $EliminarComanda = $entidadComanda -> actualizarComandaestado($idComanda);
+        $formulario->formDetalleComandaShow($listarDetalleComanda, $listaComandas,$lista);
 
-
-
-        include_once("../modelo/entidadComanda.php");
-        $entidadComanda = new entidadComanda;
-        $listaComandas = $entidadComanda->listarComandaPorEstado("PorAtender");
-        include_once("../moduloVentas/formEmitirComanda.php");
-        $formEmitirComandar = new formEmitirComanda;
-        $formEmitirComandar->formEmitirComandaShow($listaComandas);
+        
     }
 
 }
