@@ -26,29 +26,39 @@
                     </script>
                 </p>
                 <div class="div-col">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Tipo</th>
-                            <th>Stock</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($productos as $producto) {
-                        ?>
+                <?php
+                if(empty($productos) || !isset($productos)) {
+                    ?>
+                    <h2>No hay productos en la carta</h2>
+                    <?php
+                } else {
+                    ?>
+                    <table>
+                        <thead>
                             <tr>
-                                <td><?php echo $producto['nombre'] ?></td>
-                                <td><?php echo $producto['tipo'] ?></td>
-                                <td><?php echo $producto['stock'] ?></td>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>Stock</th>
                             </tr>
-                        
-                        <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($productos as $producto) {
+                            ?>
+                                <tr>
+                                    <td><?php echo $producto['nombre'] ?></td>
+                                    <td><?php echo $producto['tipo'] ?></td>
+                                    <td><?php echo $producto['stock'] ?></td>
+                                </tr>
+                            
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                    <?php
+                }
+                ?>
                 </div>
                 <form action="getCarta.php" method="POST">
                     <input class="agregar" type="submit" value="Actualizar" name="btnAActualizar">

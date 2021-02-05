@@ -1,26 +1,22 @@
 <?php
 include_once('controlActualizarCarta.php');
+$objActualizar = new actualizarCarta;
 
 if(isset($_POST['bntActualizar']) or isset($_POST['btnRegresarEstado'])){
-    $objCarta = new actualizarCarta;
     session_start();
-    $objCarta->listarCarta();
+    $objActualizar->listarCarta();
 } elseif(isset($_POST['btnAActualizar'])) {
-    $objActualizar = new actualizarCarta;
     $objActualizar->listarProductos();
 } elseif(isset($_POST['btnModificarProducto'])) {
-    $objActualizando = new actualizarCarta;
-    $objActualizando->actualizarProducto($_POST['idProducto'], $_POST['nombre'], $_POST['tipo'], $_POST['precio'], $_POST['stock'],$_POST['estado']);
+    $objActualizar->actualizarProducto($_POST['idProducto'], $_POST['nombre'], $_POST['tipo'], $_POST['precio'], $_POST['stock'],$_POST['estado']);
 } elseif(isset($_GET['tipoProducto'])) {
-    $objActualizando = new actualizarCarta;
-    $objActualizando->listarProductosPorTipo($_GET['tipoProducto']);
+    $objActualizar->listarProductosPorTipo($_GET['tipoProducto']);
 } elseif(isset($_POST['btnRegistrarProducto'])) {
-    $objActualizar = new actualizarCarta;
     $objActualizar->insertarProducto($_POST['nombre'], $_POST['tipo'], $_POST['precio'], $_POST['stock']);
 } elseif(isset($_POST['btnBuscarProducto'])) {
-    
-    $objActualizar = new actualizarCarta;
     $objActualizar->buscarProducto($_POST['nombre']);
+} elseif(isset($_POST['bntReiniciarCarta'])) {
+    $objActualizar->reiniciarCarta();
 } else {
     include_once('../shared/formMensajeSistema.php');
     $nuevoMensaje = new formMensajeSistema;

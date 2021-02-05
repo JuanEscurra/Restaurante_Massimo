@@ -74,6 +74,13 @@
             $producto = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
              return $producto;
         }
+
+        public function deshabilitarProductos() {
+
+            $consulta = "UPDATE producto SET estado=0, stock=0 where estado=1";
+            $resultado = mysqli_query($this->getConexion(),$consulta);
+            $this->cerrarConexion();
+        }
         
     }
 ?>
