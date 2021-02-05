@@ -156,19 +156,7 @@ class formAgregarComanda
                         </h2>
                     </div>
                 </center>
-                <table class="carta">
-                    <thead>
-                        <tr class="encabezado">
-                            <th>N°</th>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            
-
-                        </tr>
-                    </thead>
-                    <form action="../moduloVentas/getComanda.php" method="post">
+                <form action="../moduloVentas/getComanda.php" method="post">
                         <input type="hidden" name="idComanda" value="<?php echo $listaComandas[0]['idcomanda'] ?>">
                         <select class="input"  name="idProductoA" onchange="this.form.submit()">
 
@@ -188,30 +176,51 @@ class formAgregarComanda
                     <input  class="agregar" type="submit" name="btnARGSProducto" value="Agregar">
                     
                     </form>
+                <table class="carta">
+                    <thead>
+                        <tr class="encabezado">
+                            <th>N°</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Accion</th>
+                            
+
+                        </tr>
+                    </thead>
+                    
                     <br><br>
 
                     <?php
                     $idcomanda = $listaComandas[0]['idcomanda'];
-
+                    $i=0;
                     foreach ($listarDetalleComanda as $detalle) {
-                        $idDetalleComanda=$detalle['idDetalleComanda'];
+                        $i++;
+                        
                     ?>
                         <tr>
                         <?php
-                        $i=0;
+                        
                         $d = $detalle['idproducto'];
                         $obj = new entidadProducto();
                         $det = $obj->buscarProductoPorId($d);
                         foreach ($det as $de) {
-                            $i++;
+                            
                             echo "  <td>" . $i . "</td>
                                     <td>" . $de['nombre'] . "</td>
                                     <td>" . $de['tipo'] . "</td>
                                     <td>" . $de['precio'] . "</td>";
                         }
                             echo "<td>" . $detalle['cantidad'] . "</td>
-                                    
-                    				</tr>";
+                                <td>
+                                <form action='../moduloVentas/getComanda.php' method=post>
+                                <input type='hidden' name='idDetCom' value=$detalle[idDetalleComanda]>
+                                <input type='hidden' name='idComa' value=$idcomanda>
+                                <input class='buscar' type=submit name=EliminarProducto value=Eliminar>
+                                </form>
+                                </td>
+                    	</tr>";
                     }
 
                         ?>

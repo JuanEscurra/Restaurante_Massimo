@@ -16,7 +16,12 @@
             <body>
                 <div class="div-header">
                     <img src="../img/logo_header.png" height="100" width="230">
+                    <form action="../moduloSeguridad/getUsuario.php" method="POST">
+                    <input  class="volver" type="submit" name="btnInicio" value="Atras">
+                </form>
+
                 </div>
+
                 <h1 class="titulo">Carta</h1>
                 <p>Dia: 
                     <script>
@@ -24,8 +29,12 @@
                         var f=new Date();
                         document.write(f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
                     </script>
-                </p>
+                </p><br>
+                <form action="getCarta.php" method="POST">
+                    <input class="agregar" type="submit" value="Actualizar" name="btnAActualizar">
+                </form>
                 <div class="div-col">
+
                 <table>
                     <thead>
                         <tr>
@@ -50,12 +59,8 @@
                     </tbody>
                 </table>
                 </div>
-                <form action="getCarta.php" method="POST">
-                    <input class="agregar" type="submit" value="Actualizar" name="btnAActualizar">
-                </form>
-                <form action="../moduloSeguridad/getUsuario.php" method="POST">
-                    <input  class="volver" type="submit" name="btnInicio" value="Atras">
-                </form>
+                
+                
                 
             </body>
             </html>

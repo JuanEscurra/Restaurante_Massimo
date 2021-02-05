@@ -42,7 +42,13 @@ elseif (isset($_POST['btnCrearComanda'])) {
     $nuevoControl->CrearComanda($_POST['NumeroComanda'],$_POST['NumeroMesa'], $_POST['cliente'], $_SESSION['listaProductos']);
     
 
-}     elseif (isset($_POST['btnEliminarProducto'])) {
+} elseif (isset($_POST['EliminarProducto'])) {
+
+    include_once("controlComanda.php");
+    $nuevoControl = new controlComanda;
+    $nuevoControl->EliminarDetalleComanda($_POST['idDetCom'],$_POST['idComa']);
+}   
+  elseif (isset($_POST['btnEliminarProducto'])) {
     $filaProductos = $_POST['filaProductos'];
     array_splice($_SESSION['listaProductos'], $filaProductos,1);
     include_once("controlComanda.php");
