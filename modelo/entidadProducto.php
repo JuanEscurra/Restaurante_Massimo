@@ -1,6 +1,17 @@
 <?php 
     include_once("conexion.php");
     class entidadProducto extends Conexion{
+
+        public function insertarProducto($nombre,$tipo, $precio,$estado='1') {
+            $queryProducto = "INSERT INTO PRODUCTO (`nombre`,`tipo`,`precio`,`estado`)
+                                    VALUES ('$nombre','$tipo',$precio,$estado)";
+            $conexion= new conexion;
+            $resultado = mysqli_query($conexion->getConexion(),$queryProducto);
+            $conexion->cerrarConexion();
+            echo $queryProducto;
+            
+        }
+
         public function listarProductosPorNombre($nombreProducto){
             $queryProducto = "SELECT * from producto where nombre ='$nombreProducto' AND estado= 1";
             $conexion= new conexion;
@@ -8,8 +19,7 @@
             $conexion->cerrarConexion();
             $producto = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
             
-             return $producto;
-            
+            return $producto;
         }
 
         public function buscarProductoPorId($idProducto) {
@@ -41,7 +51,7 @@
         /* ###### */
 
         public function listarProductos(){
-            $queryProducto = "SELECT * from producto where estado = 1";
+            $queryProducto = "SELECT * from producto";
             $conexion= new conexion;
             $resultado = mysqli_query($conexion->getConexion(),$queryProducto);
             $conexion->cerrarConexion();

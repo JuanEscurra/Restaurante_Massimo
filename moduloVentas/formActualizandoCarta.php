@@ -21,6 +21,18 @@
                 <h1 class="titulo">Actualizando Carta del dia</h1>
 
                 <!-- Button trigger modal -->
+                <form action="getCarta.php">
+                    Buscar por tipo de producto: 
+                    <select name="tipoProducto" onchange="this.form.submit()">
+                        <option value="entrada" selected>Todo</option>
+                        <option value="entrada">Entrada</option>
+                        <option value="segundo">Segundo</option>
+                        <option value="sopa">Sopa</option>
+                        <option value="bebida">Bebida</option>
+                        <option value="gaseosa">Gaseosa</option>
+                    </select>
+                </form>
+
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Registrar producto
                 </button>
@@ -33,33 +45,39 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo producto</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="" method="post">
+                            <form action="getCarta.php" method="post" class="needs-validation">
                             <div class="modal-body">
-                                <input type="text" name="">
+                                
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre: </label>
+                                    <input type="text" name="nombre" class="form-control" id="nombre" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="tipo" class="form-label">Tipo: </label>
+                                    <select name="tipo" id="tipo" class="form-select" required>
+                                        <option selected>Selecione una opción</option>
+                                        <option value="entrada">entrada</option>
+                                        <option value="bebida">bebida</option>
+                                        <option value="gaseosa">gaseosa</option>
+                                        <option value="segundo">segundo</option>
+                                        <option value="sopa">sopa</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precio" class="form-label">Precio: </label>
+                                    <input type="text" name="precio" class="form-control" id="precio" required>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <input class="btn btn-primary" type="submit" name="btnRegistrarProducto" value="Registrar nuevo producto">
                             </div>
                             </form>
                         </div>
                     </div>
                 </div>
 
-                <form action="getCarta.php">
-                    Buscar por tipo de producto: 
-                    <select name="tipoProducto" onchange="this.form.submit()">
-                        <option value="entrada" selected>Todo</option>
-                        <option value="entrada">Entrada</option>
-                        <option value="segundo">Segundo</option>
-                        <option value="sopa">Sopa</option>
-                        <option value="bebida">Bebida</option>
-                        <option value="gaseosa">Gaseosa</option>
-                    </select>
-                </form>
-                <form action="getCarta.php" method="post">
-                    <input type="submit" name="btnRegistrarProducto" value="Registrar nuevo producto">
-                </form>
                 <table>
                     <thead>
                         <tr>

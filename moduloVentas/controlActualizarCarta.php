@@ -31,5 +31,12 @@ class actualizarCarta{
         $productos = $objProducto->listarProductosPorTipo($tipo);
         $formActualizando->formActualizandoCartaShow($productos);           
     }
+
+    public function insertarProducto($nombre, $tipo, $precio) {
+        $objProducto = new entidadProducto;
+        $objProducto->insertarProducto($nombre,$tipo,$precio);
+        
+        $this->listarProductos();
+    }
 }
 ?>
