@@ -34,31 +34,16 @@
                     <input class="agregar" type="submit" value="Actualizar" name="btnAActualizar">
                 </form>
                 <div class="div-col">
-<<<<<<< HEAD
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Tipo</th>
-                            <th>Stock</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($productos as $producto) {
-                        ?>
-=======
                 <?php
                 if(empty($productos) || !isset($productos)) {
                     ?>
-                    <h2>No hay productos en la carta</h2>
+                        <h2>No hay productos en la carta</h2>
                     <?php
                 } else {
                     ?>
                     <table>
                         <thead>
->>>>>>> 16d03d8c6e212179ea81caffdc39e68385aa940b
                             <tr>
                                 <th>Nombre</th>
                                 <th>Tipo</th>
@@ -80,10 +65,11 @@
                             ?>
                         </tbody>
                     </table>
+
                     <?php
                 }
                 ?>
-                </div>
+            </div>
                 
                 
                 
