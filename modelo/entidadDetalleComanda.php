@@ -13,12 +13,27 @@
             }
             $this->cerrarConexion();
         }
+        public function insertarDetalleComandaA($idComanda,$idProducto,$cantidad) {
+            
+           
+           $queryProducto = "INSERT INTO detallecomanda (`idComanda`, `idProducto`,`cantidad`) 
+                    VALUES ($idComanda,$idProducto,$cantidad)";
+            $conexion= new conexion;
+            $resultado = mysqli_query($conexion->getConexion(),$queryProducto);
+            $conexion->cerrarConexion();
+            $detalle = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+            
+            return $detalle;
+        }
         public function listarDetalleComanda($idComanda) {
-            $queryProforma = "SELECT * from detallecomanda where idcomanda=$idComanda";
-            $resultado = mysqli_query($this->getConexion(),$queryProforma);
-            $this->cerrarConexion(); 
-            $resultados = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
-            return $resultados;
+            
+            $queryProducto = "SELECT * from detallecomanda where idcomanda=$idComanda";
+            $conexion= new conexion;
+            $resultado = mysqli_query($conexion->getConexion(),$queryProducto);
+            $conexion->cerrarConexion();
+            $detalle = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+            
+            return $detalle;
         }
         public function EliminarDetalleComanda($idDetalleComanda){
              $queryProforma = "DELETE from detallecomanda where idcomanda=$idDetalleComanda";

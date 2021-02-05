@@ -21,8 +21,10 @@ class formAgregarComanda
         <body>
 
             <div class="div-header">
-                <img src="../img/logo_header.png" height="100" width="230">
-
+            <img src="../img/logo_header.png" height="100" width="230">
+                <form action="getComanda.php" method="POST">
+            <input  class="volver" type="submit" name="btnEmitirComanda" value="Atras">
+        </form>
             </div>
                             
             </body>
@@ -32,7 +34,7 @@ class formAgregarComanda
                 
                 <form action="../moduloVentas/getComanda.php" method="post">
                         <select class="input"  name="idProducto" onchange="this.form.submit()">
-                            <option ><?php echo $_SESSION['nombre'] ?></option>
+                            <option requered><?php echo $_SESSION['nombre'] ?></option>
                             <?php  
                             foreach ($lista as $value) { ?>
                             <option  value="<?php echo $value['idProducto'] ?>"><?php echo $value['nombre'] ?></option> 
@@ -68,7 +70,8 @@ class formAgregarComanda
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                      
+                        <th scope="col">nombre</th>
+                        <th scope="col">tipo</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio Unitario</th>
                         <th>Acciones</th>
@@ -77,12 +80,15 @@ class formAgregarComanda
                 <tbody>
                     <?php
                     $i = 0;
+                    $j=0;
                     foreach ($_SESSION['listaProductos'] as $productos) {
-
+                            $j++;
                         echo "<tr>
                                                     <form action=../moduloVentas/getComanda.php?idProducto=$productos[idProducto] method=post>
                                                     <input type=text value=$productos[idProducto] readonly hidden name=idProducto>
+                                                    <td>" . $j . "</td>
                                                     <td>" . $productos['nombre'] . "</td>
+                                                    <td>" . $productos['tipo'] . "</td>
                                                     <td>" . $productos['cantidad'] . "</td>
                                                     <td>" . $productos['precio'] . "</td>
                                                     <td><input class='buscar' type=submit name=btnEliminarProducto value=Eliminar></td>
@@ -100,13 +106,11 @@ class formAgregarComanda
         <?php
         }
         ?>
-        <br>
-        <form action="getComanda.php" method="POST">
-            <input  class="volver" type="submit" name="btnEmitirComanda" value="Atras">
-        </form>
+        
+        
     <?php
-    }
-    public function formDetalleComandaShow($listarDetalleComanda, $listaComandas)
+    }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formDetalleComandaShow($listarDetalleComanda, $listaComandas,$lista)
     {
         ?>
         <!DOCTYPE html>
@@ -115,21 +119,31 @@ class formAgregarComanda
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <!-- <link rel="stylesheet" href="../estilos/actualizarCarta.css"> -->
             <link rel="shorcut icon" type="image/x-icon" href="../img/icono.ico">
             <link rel="stylesheet" href="../estilos/gestionarUsuarios.css">
             <link rel="stylesheet" href="../estilos/estilos_generales.css">
             <link rel="stylesheet" href="../estilos/estilos_agregarComanda.css">
             <title>Proforma</title>
         </head>
-
+                
         <body>
-            <h1 class="title">Modificar Comanda</h1>
+            <div class="div-header">
+                <img src="../img/logo_header.png" height="100" width="230">
+                <form action="../moduloVentas/getComanda.php" method="post">
+                            <input  class="volver" type="submit" name="btnEmitirComanda" value="Atras">
+                        </form>
 
+            </div>
+            
+                <h1 class="titulo">Modificar Comanda</h1>
+            
 
             <div class="actualizaCarta">
                 <center>
-                    <div>
+                    <div><form action='getComanda.php' method='POST'>
+                                    <input type='hidden' name='idComanda' value="<?php echo $listaComandas[0]['idcomanda'] ?>">
+                                    <input class='modificar' type='submit' value='Eliminar' name='btnEliminarComanda'>
+                                    </form>
                         <h2 class="text">
                             <label for="">Numero de Comanda: </label>
                             <?php echo $listaComandas[0]['numeroComanda'] ?><br>
@@ -145,6 +159,7 @@ class formAgregarComanda
                 <table class="carta">
                     <thead>
                         <tr class="encabezado">
+                            <th>N°</th>
                             <th>Nombre</th>
                             <th>Descripcion</th>
                             <th>Precio</th>
@@ -153,6 +168,27 @@ class formAgregarComanda
 
                         </tr>
                     </thead>
+                    <form action="../moduloVentas/getComanda.php" method="post">
+                        <input type="hidden" name="idComanda" value="<?php echo $listaComandas[0]['idcomanda'] ?>">
+                        <select class="input"  name="idProductoA" onchange="this.form.submit()">
+
+                            <option requered><?php echo $_SESSION['nombre'] ?></option>
+                            <?php  
+                            foreach ($lista as $values) { ?>
+                            <option  value="<?php echo $values['idProducto'] ?>"><?php echo $values['nombre'] ?></option> 
+                            <?php } ?>
+                        </select> 
+                        <select class="input"  name="CantidadProducto" >
+                            <?php  $i=1;
+                            for($i;$i<=$_SESSION['stock'];$i++) { ?>
+                                <option  value="<?php echo $i?>"><?php echo $i ?></option> 
+                            <?php } ?>
+                        </select>
+
+                    <input  class="agregar" type="submit" name="btnARGSProducto" value="Agregar">
+                    
+                    </form>
+                    <br><br>
 
                     <?php
                     $idcomanda = $listaComandas[0]['idcomanda'];
@@ -162,12 +198,13 @@ class formAgregarComanda
                     ?>
                         <tr>
                         <?php
+                        $i=0;
                         $d = $detalle['idproducto'];
                         $obj = new entidadProducto();
                         $det = $obj->buscarProductoPorId($d);
                         foreach ($det as $de) {
-                            
-                            echo "
+                            $i++;
+                            echo "  <td>" . $i . "</td>
                                     <td>" . $de['nombre'] . "</td>
                                     <td>" . $de['tipo'] . "</td>
                                     <td>" . $de['precio'] . "</td>";
@@ -179,13 +216,8 @@ class formAgregarComanda
 
                         ?>
 
-                                    <form action='getComanda.php' method='POST'>
-                                    <input type='hidden' name='idComanda' value="<?php echo $idcomanda ?>">
-                                    <input class='volver' type='submit' value='Eliminar' name='btnEliminarComanda'>
-                                    </form>
-                        <form action="../moduloVentas/getComanda.php" method="post">
-                            <input  class="modificar" type="submit" name="btnEmitirComanda" value="Atras">
-                        </form>
+                                    
+                        
 
 
                 

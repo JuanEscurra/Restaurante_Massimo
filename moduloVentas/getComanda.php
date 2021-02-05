@@ -25,8 +25,18 @@ elseif (isset($_POST['btnARGProducto'])) {
     $nuevoControl->ARGProducto($_POST['idProducto'],$_POST['CantidadProducto']);
 
 
-//rodolfo 
-} elseif (isset($_POST['btnCrearComanda'])) {
+
+
+} 
+elseif (isset($_POST['btnARGSProducto'])) {
+    include_once("controlComanda.php");
+    $nuevoControl = new controlComanda;
+    
+    $nuevoControl->ARGSProducto($_POST['idProductoA'],$_POST['CantidadProducto'],$_POST['idComanda']);
+
+
+}
+elseif (isset($_POST['btnCrearComanda'])) {
     include_once("controlComanda.php");
     $nuevoControl = new controlComanda;
     $nuevoControl->CrearComanda($_POST['NumeroComanda'],$_POST['NumeroMesa'], $_POST['cliente'], $_SESSION['listaProductos']);
@@ -42,6 +52,10 @@ elseif (isset($_POST['btnARGProducto'])) {
     include_once("controlComanda.php");
     $nuevoControl = new controlComanda;
     $nuevoControl->buscarStock($_POST['idProducto']);
+}elseif (isset($_POST['idProductoA'])) {
+    include_once("controlComanda.php");
+    $nuevoControl = new controlComanda;
+    $nuevoControl->buscarStockA($_POST['idProductoA'],$_POST['idComanda']);
 }/*
 elseif (isset($_POST['btnAgregarProducto'])) {
     $productos = array("idProducto" => $_POST['idProducto'], "cantidad" => $_POST['cantidadProducto'], "precio"=> $_POST['precio']);
@@ -57,7 +71,7 @@ elseif (isset($_POST['btnAgregarProducto'])) {
     $formulario = new formAgregarComanda;
     $formulario->formAgregarComandaShow();
 
-}*/ elseif (isset($_POST['btnModificarComanda'])) {
+}*/ elseif (isset($_POST['btnModificarComanda'])) {/////////////////////////////////////////////////////////////////////////////////////////////
     include_once("controlComanda.php");
     $nuevoControl = new controlComanda;
     $nuevoControl->detalleComanda($_POST['idComanda']);

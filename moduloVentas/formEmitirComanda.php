@@ -15,6 +15,9 @@ class formEmitirComanda{
             <body>
                 <div class="div-header">
                     <img src="../img/logo_header.png" height="100" width="230">
+                    <form action="../moduloSeguridad/getUsuario.php" method="POST">
+                                <input  class="volver" type="submit" name="btnInicio" value="Atras">
+                            </form>
                 </div>
                     <h1 class="titulo">Lista de Comandas</h1>
                     <form action="../moduloVentas/getComanda.php" method="post">
@@ -31,6 +34,7 @@ class formEmitirComanda{
                                         <th scope="col">#</th>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Numero de Mesa</th>
+                                        <th scope="col">cliente</th>
                                         <th scope="col">estado</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -44,13 +48,15 @@ class formEmitirComanda{
                                             <tr>
                                                 <td>" . $i . "</td>
                                                 <td>" . $comanda['fecha'] . "</td>
-                                                <td>" . $comanda['numeroMesa'] . "</td>";
+                                                <td>" . $comanda['numeroMesa'] . "</td>
+                                                <td>" . $comanda['cliente'] . "</td>";
                                                 if($comanda['estado']=="PorAtender"){
                                                     echo "<td>Por atender</td>";
                                                 }
                                         echo"<td>
-                                                    <form action=getComanda.php method=post><input type=submit name=btnModificarComanda value=detalle>
-                                                        <input type=number name=idComanda value=$comanda[idcomanda] readonly required hidden>
+                                                    <form action=getComanda.php method=post>
+                                                    <input class='volver' type=submit name=btnModificarComanda value=Modificar>
+                                                    <input type=number name=idComanda value=$comanda[idcomanda] readonly required hidden>
                                                     </form>
                                                 </td>
                                             </tr>";
@@ -58,9 +64,7 @@ class formEmitirComanda{
                                     ?>
                                 </tbody>
                             </table>
-                            <form action="../moduloSeguridad/getUsuario.php" method="POST">
-                                <input  class="volver" type="submit" name="btnInicio" value="Atras">
-                            </form>
+                            
                         <?php
                     }?>
                         </body>
