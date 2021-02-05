@@ -16,12 +16,11 @@ class actualizarCarta{
         $productos = $objProducto->listarProductos();
         $formActualizando->formActualizandoCartaShow($productos);
     }
-    public function actualizandoEstados($id, $estado){
+    public function actualizarProducto($id, $nombre, $tipo, $precio, $stock, $estado){
         $entiActualizando = new entidadProducto;
-        $entiActualizando->cambiarEstado($id,$estado);
+        $entiActualizando->modificarProducto($id, $nombre, $tipo, $precio, $stock, $estado);
         $this->listarProductos();
-
-    }
+    }   
     
     public function listarProductosPorTipo($tipo) {
         include_once('formActualizandoCarta.php');
@@ -32,11 +31,20 @@ class actualizarCarta{
         $formActualizando->formActualizandoCartaShow($productos);           
     }
 
-    public function insertarProducto($nombre, $tipo, $precio) {
+    public function insertarProducto($nombre, $tipo, $precio,$stock) {
         $objProducto = new entidadProducto;
-        $objProducto->insertarProducto($nombre,$tipo,$precio);
+        $objProducto->insertarProducto($nombre,$tipo,$precio,$stock);
         
         $this->listarProductos();
+    }
+
+    public function buscarProducto($nombre) {
+        include_once('formActualizandoCarta.php');
+        $objProducto = new entidadProducto;
+        $formActualizando = new formActualizarCarta;
+
+        $productos = $objProducto->buscarProductosPorNombre($nombre);
+        $formActualizando->formActualizandoCartaShow($productos); 
     }
 }
 ?>

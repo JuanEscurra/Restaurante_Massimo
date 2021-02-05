@@ -10,13 +10,17 @@ if(isset($_POST['bntActualizar']) or isset($_POST['btnRegresarEstado'])){
     $objActualizar->listarProductos();
 } elseif(isset($_POST['btnModificarProducto'])) {
     $objActualizando = new actualizarCarta;
-    $objActualizando->actualizandoEstados($_POST['idProducto'],$_POST['estado']);
+    $objActualizando->actualizarProducto($_POST['idProducto'], $_POST['nombre'], $_POST['tipo'], $_POST['precio'], $_POST['stock'],$_POST['estado']);
 } elseif(isset($_GET['tipoProducto'])) {
     $objActualizando = new actualizarCarta;
     $objActualizando->listarProductosPorTipo($_GET['tipoProducto']);
 } elseif(isset($_POST['btnRegistrarProducto'])) {
     $objActualizar = new actualizarCarta;
-    $objActualizar->insertarProducto($_POST['nombre'], $_POST['tipo'], $_POST['precio']);
+    $objActualizar->insertarProducto($_POST['nombre'], $_POST['tipo'], $_POST['precio'], $_POST['stock']);
+} elseif(isset($_POST['btnBuscarProducto'])) {
+    
+    $objActualizar = new actualizarCarta;
+    $objActualizar->buscarProducto($_POST['nombre']);
 } else {
     include_once('../shared/formMensajeSistema.php');
     $nuevoMensaje = new formMensajeSistema;

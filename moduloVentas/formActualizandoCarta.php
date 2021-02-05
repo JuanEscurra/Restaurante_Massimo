@@ -68,6 +68,10 @@
                                     <label for="precio" class="form-label">Precio: </label>
                                     <input type="text" name="precio" class="form-control" id="precio" required>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="stock" class="form-label">Stock: </label>
+                                    <input type="text" name="stock" class="form-control" id="stock" required>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -77,7 +81,13 @@
                         </div>
                     </div>
                 </div>
-
+                <form action="getCarta.php" method="POST">
+                    <input type="text" name="nombre" placeholder="Ingrese nombre del producto">
+                    <input type="submit" name="btnBuscarProducto" value="Buscar">
+                </form>
+                <form action="getCarta.php" method="POST">
+                    <input type="submit" name="bntActualizar" value="Atras" class="volver">
+                </form>
                 <table>
                     <thead>
                         <tr>
@@ -85,6 +95,7 @@
                             <th>Nombre</th>
                             <th>Tipo</th>
                             <th>Precio</th>
+                            <th>Stock</th>
                             <th>Estado</th>
                             <th>Detalle</th>
                         </tr>
@@ -96,9 +107,21 @@
                             <tr>";
                                 echo "<input name='idProducto' value='$producto[idProducto]' hidden>";
                                 echo"<td> $producto[idProducto]</td>";
-                                echo "<td>" . $producto['nombre'] . "</td>";
-                                echo "<td>" . $producto['tipo'] . "</td>";
-                                echo "<td>" . $producto['precio'] . "</td>";
+                                echo "<td><input name='nombre' value='$producto[nombre]'></td>";
+                                ?>
+                                <td>
+                                    <select type='text' name='tipo' required>
+                                        <option>Selecione una opción</option>
+                                        <option value='entrada' <?php if($producto['tipo']=="entrada") {echo "selected"; }?>>entrada</option>
+                                        <option value='bebida' <?php if($producto['tipo']=="bebida") {echo "selected"; }?>>bebida</option>
+                                        <option value='gaseosa' <?php if($producto['tipo']=="gaseosa") {echo "selected"; }?>>gaseosa</option>
+                                        <option value='segundo' <?php if($producto['tipo']=="segundo") {echo "selected"; }?>>segundo</option>
+                                        <option value='sopa' <?php if($producto['tipo']=="sopa") {echo "selected"; }?>>sopa</option>
+                                    </select>
+                                </td>
+                                <?php
+                                echo "<td><input type=number name='precio' value='$producto[precio]'></td>";
+                                echo "<td><input type=number name='stock' value='$producto[stock]' min=0></td>";
                                 echo "<td><select name='estado'>";
                                 if($producto['estado'] == '1') {
                                     echo "<option value='1' selected>Habilitado</option>

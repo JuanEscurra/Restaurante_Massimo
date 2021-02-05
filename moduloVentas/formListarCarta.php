@@ -26,9 +26,29 @@
                     </script>
                 </p>
                 <div class="div-col">
-                    <?php
-                        var_dump($productos);
-                    ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($productos as $producto) {
+                        ?>
+                            <tr>
+                                <td><?php echo $producto['nombre'] ?></td>
+                                <td><?php echo $producto['tipo'] ?></td>
+                                <td><?php echo $producto['stock'] ?></td>
+                            </tr>
+                        
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
                 </div>
                 <form action="getCarta.php" method="POST">
                     <input class="agregar" type="submit" value="Actualizar" name="btnAActualizar">
