@@ -27,5 +27,5 @@
 		include_once("../shared/formMensajeSistema.php");
 		$nuevoMensaje = new formMensajeSistema;
 		$nuevoMensaje -> formMensajeSistemaShow("Acceso no permitido","<a href = '../index.php'>ir al inicio</a");
-		}
+	}
 ?>
