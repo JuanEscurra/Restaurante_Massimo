@@ -131,7 +131,7 @@
                                         </select>
                                     </td>
                                     <?php
-                                    echo "<td><input type=number name='precio' value='$producto[precio]'></td>";
+                                    echo "<td><input type=number min=1 name='precio' value='$producto[precio]'></td>";
                                     echo "<td><input type=number name='stock' value='$producto[stock]' min=0></td>";
                                     echo "<td><select name='estado'>";
                                     if($producto['estado'] == '1') {

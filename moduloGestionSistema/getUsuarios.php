@@ -52,7 +52,6 @@
         $foto = $_FILES;
         var_dump($_FILES);
         include_once('controlGestionarUsuarios.php');
-        move_uploaded_file($_FILES['imgPerfil']['tmp_name'],"img/".$_FILES['imgPerfil']['name']);
         $controlAdding = new controlGestionarUsuarios;
         $controlAdding -> registrandoUsuario($nombre,$usuario,$dni,$foto,$rol,$pass,$email,$secreto);
     }
