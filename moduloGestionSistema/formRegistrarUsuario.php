@@ -25,10 +25,10 @@ class registrarUsuario{
                         <!-- <label for="usuario">Usuario</label>
                         <input type="text" name="usuario" placeholder="Ingrese Usuario"> -->
                         <label for="dni">DNI</label>
-                        <input class="input" type="text" name="dni" placeholder="Ingrese DNI" required>
+                        <input class="input" type="number" max=99999999 name="dni" placeholder="Ingrese DNI" required>
 
                         <label for="email">Email</label>
-                        <input  class="input"type="text" name="email" placeholder="Ingrese Email" required>
+                        <input  class="input" type="email" name="email" placeholder="Ingrese Email" required>
 
                         <label for="rol">Cargo</label>
                         <select name="rol">
@@ -37,13 +37,7 @@ class registrarUsuario{
                             <option value="1">Cajero</option>
                         </select>
                         <label for="pass">Contraseña</label>
-                        <input class="input" type="text" name="pass" placeholder="Ingrese contraseña">
-
-                        <label for="estado">Estado</label>
-                        <select name="estado">
-                            <option value="1">Habilitado</option>
-                            <option value="0">Inhabilitado</option>
-                        </select>
+                        <input class="input" type="password" name="pass" placeholder="Ingrese contraseña">
 
                         <label for="imgPerfil">Foto: </label>
                         <input type="file" name="imgPerfil">
