@@ -36,14 +36,12 @@ class formDetalleComanda
                                     <input class='modificar' type='submit' value='Eliminar' name='btnEliminarComanda'>
                                     </form>
                         <h2 class="text">
-                            <label for="">Numero de Comanda: </label>
-                            <?php echo $listaComandas[0]['numeroComanda'] ?><br>
+                            
                             <label for="">Fecha: </label>
                             <?php echo $listaComandas[0]['fecha'] ?><br>
                             <label for="">Numero de Mesa: </label>
                             <?php echo $listaComandas[0]['numeroMesa'] ?><br>
-                            <label for="">Cliente: </label>
-                            <?php echo $listaComandas[0]['cliente'] ?><br>
+                            
                         </h2>
                     </div>
                 </center>

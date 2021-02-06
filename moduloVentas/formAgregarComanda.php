@@ -58,9 +58,7 @@ class formAgregarComanda
 
                 
                 <form class="form-f" action="../moduloVentas/getComanda.php" method="post">
-                    <input class="input" type="text" name="NumeroComanda" placeholder="Numero de Comanda" required>
                     <input class="input" type="text" name="NumeroMesa" placeholder="Numero de mesa" required>
-                    <input class="input" type="text" name="cliente" placeholder="Cliente">
                     <input class="agregar" type="submit" name="btnCrearComanda" value="Crear Comanda">
                 </form>
             </div>
@@ -104,7 +102,7 @@ class formAgregarComanda
                     }
                     ?>
                 </tbody>
-            </table>
+            </table>    
             
             
 <?php

@@ -75,11 +75,11 @@ class controlComanda
         $producto->ActualizarStockProductos($Producto[0]['idProducto'],$total);
         $this->buscarStock($Producto[0]['idProducto']);
     }
-    public function CrearComanda($numeroComanda,$NumeroMesa, $cliente, $arrayProductos = []){
+    public function CrearComanda($NumeroMesa,$arrayProductos = []){
         //1//3
         $comanda = new entidadComanda;
         $detalleComanda = new entidadDetalleComanda;
-        $comanda->insertarComanda($numeroComanda,$NumeroMesa, $cliente,0);
+        $comanda->insertarComanda($NumeroMesa,0);
         $idMax = $comanda->obtenerIdMaxProforma();
         $detalleComanda->insertarDetalleComanda($idMax[0]["idcomanda"], $arrayProductos);
         unset($_SESSION['listaProductos']);
