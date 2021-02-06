@@ -2,7 +2,7 @@
   class Conexion{
       private $conexion;
       function __construct(){
-        $this->conexion = mysqli_connect("localhost","root","12345678","oficial_massimo");
+        $this->conexion = mysqli_connect("localhost","root","","oficial_massimo");
       }
 
       public function getConexion(){

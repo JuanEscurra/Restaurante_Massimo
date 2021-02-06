@@ -25,7 +25,7 @@ class registrarUsuario{
                         <!-- <label for="usuario">Usuario</label>
                         <input type="text" name="usuario" placeholder="Ingrese Usuario"> -->
                         <label for="dni">DNI</label>
-                        <input class="input" type="number" maxlength="8" name="dni" placeholder="Ingrese DNI" required>
+                        <input class="input" type="text" minlength="8" maxlength="8" name="dni" placeholder="Ingrese DNI" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" required>
 
                         <label for="email">Email</label>
                         <input  class="input" type="email" name="email" placeholder="Ingrese Email" required>
@@ -37,10 +37,10 @@ class registrarUsuario{
                             <option value="1">Cajero</option>
                         </select>
                         <label for="pass">Contraseña</label>
-                        <input class="input" type="password" name="pass" placeholder="Ingrese contraseña">
+                        <input class="input" minlength="6" type="password" name="pass" placeholder="Ingrese contraseña">
 
                         <label for="imgPerfil">Foto: </label>
-                        <input type="file" name="imgPerfil">
+                        <input type="file" name="imgPerfil" required>
 
                         <input class="agregar" type="submit" value="Registrar usuario" name="btnRegistrandoUsuario">
                     </form>
