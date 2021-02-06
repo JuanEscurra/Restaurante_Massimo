@@ -17,6 +17,9 @@
             <body>
                 <div class="div-header">
                      <img src="../img/logo_header.png" height="100" width="230">
+                     <form action="getCarta.php" method="POST">
+                    <input type="submit" name="bntActualizar" value="Atras" class="volver">
+                </form>
                 </div>
                 <h1 class="titulo">Actualizando Carta del dia</h1>
 
@@ -85,9 +88,7 @@
                     <input type="text" name="nombre" placeholder="Ingrese nombre del producto">
                     <input type="submit" name="btnBuscarProducto" value="Buscar">
                 </form>
-                <form action="getCarta.php" method="POST">
-                    <input type="submit" name="bntActualizar" value="Atras" class="volver">
-                </form>
+                
                 <form action="getCarta.php" method="POST">
                     <input type="submit" name="bntReiniciarCarta" value="Reiniciar carta" class="volver">
                 </form>

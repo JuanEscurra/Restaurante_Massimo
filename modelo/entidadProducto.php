@@ -26,7 +26,7 @@
             $resultado = mysqli_query($conexion->getConexion(),$queryProducto);
             $conexion->cerrarConexion();
             $producto = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
-            echo $queryProducto;
+            $queryProducto;
             return $producto;
         }
 
