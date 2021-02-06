@@ -20,12 +20,12 @@ class formEmitirComanda{
                     </form>
                 </div>
                     <h1 class="titulo">Lista de Comandas</h1>
-                    
+
                     <form action="../moduloVentas/getComanda.php" method="post">
                         <input  class="agregar" type="submit" name="btnAgregarComanda" value="Agregar Comanda">
                     </form>
                     <?php
-                        if (!isset($listarComandas)) {
+                        if ($listarComandas==NULL) {
                                 echo 'no se encontro datos';
                             } else {
                         ?>
@@ -35,9 +35,10 @@ class formEmitirComanda{
                                         <th scope="col">#</th>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Numero de Mesa</th>
-                                        <th scope="col">cliente</th>
                                         <th scope="col">estado</th>
-                                        <th>Acciones</th>
+                                        <th scope="col">Modificar</th>
+                                        <th scope="col">Atender</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,14 +50,19 @@ class formEmitirComanda{
                                             <tr>
                                                 <td>" . $i . "</td>
                                                 <td>" . $comanda['fecha'] . "</td>
-                                                <td>" . $comanda['numeroMesa'] . "</td>
-                                                <td>" . $comanda['cliente'] . "</td>";
+                                                <td>" . $comanda['numeroMesa'] . "</td>";
                                                 if($comanda['estado']=="PorAtender"){
                                                     echo "<td>Por atender</td>";
                                                 }
-                                        echo"<td>
+                                        echo"   <td>
                                                     <form action=getComanda.php method=post>
                                                     <input class='volver' type=submit name=btnModificarComanda value=Modificar>
+                                                    <input type=number name=idComanda value=$comanda[idcomanda] readonly required hidden>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form action=getComanda.php method=post>
+                                                    <input class='volver' type=submit name=btn value=Atender>
                                                     <input type=number name=idComanda value=$comanda[idcomanda] readonly required hidden>
                                                     </form>
                                                 </td>

@@ -53,11 +53,11 @@ class controlComanda
         $formulario->formDetalleComandaShow($listarDetalleComanda, $listaComandas,$listaProductos);
     }
     public function AgregarProductoComanda($nombreProducto,$cantidadProducto){   
-        //2//5
+        //2
         $producto= new entidadProducto;
-        $formulario = new formAgregarComanda;
         $listaProducto =$producto->listarProductosActivos();
-        $Producto=$producto->listarProductosPorNombre($nombreProducto);     
+        $Producto=$producto->listarProductosPorNombre($nombreProducto);
+        
         $_SESSION['stock'] =$Producto[0]['stock'];
         $_SESSION['nombre'] =$Producto[0]['nombre'];
         $arrayproductos = array("idProducto" => $Producto[0]['idProducto'], "tipo" => $Producto[0]['tipo'], 
@@ -71,14 +71,15 @@ class controlComanda
             $i++;
             $_SESSION["listaProductos"][$i] = $arrayproductos;
         }
-        $formulario->formAgregarComandaShow($listaProducto);
-        
+        $total=$Producto[0]['stock']-$cantidadProducto;
+        $producto->ActualizarStockProductos($Producto[0]['idProducto'],$total);
+        $this->buscarStock($Producto[0]['idProducto']);
     }
     public function CrearComanda($numeroComanda,$NumeroMesa, $cliente, $arrayProductos = []){
         //1//3
         $comanda = new entidadComanda;
         $detalleComanda = new entidadDetalleComanda;
-        $comanda->insertarComanda($numeroComanda,$NumeroMesa, $cliente, $this->calcularTotal($arrayProductos));
+        $comanda->insertarComanda($numeroComanda,$NumeroMesa, $cliente,0);
         $idMax = $comanda->obtenerIdMaxProforma();
         $detalleComanda->insertarDetalleComanda($idMax[0]["idcomanda"], $arrayProductos);
         unset($_SESSION['listaProductos']);
@@ -103,51 +104,52 @@ class controlComanda
         $entidadComanda=new entidadComanda;
         $formulario = new formDetalleComanda;
         $Prod=$producto->listarProductosPorNombre($nombreProducto);
+        $stock=$Prod[0]['stock'];
+        $total=$stock-$cantidadProducto;
+        $producto->ActualizarStockProductos($Prod[0]['idProducto'],$total);///////
         $detalleComanda->insertarDetalleComandaA($idComanda,$Prod[0]['idProducto'],$cantidadProducto);
-        $listarDetalleComanda=$detalleComanda-> listarDetalleComanda($idComanda);
-        $listaComandas = $entidadComanda->buscarComandaPorid($idComanda);
-        $listaProducto =$producto->listarProductosActivos();
-        $formulario->formDetalleComandaShow($listarDetalleComanda, $listaComandas,$listaProducto);
+        $this->buscarStockActualizado($Prod[0]['idProducto'],$idComanda);
                 
     }
-    public function calcularTotal($arrayProductos = []){
+    /*public function calcularTotal($arrayProductos = []){
         $cantidadTotal = 0;
-
         foreach ($arrayProductos as $producto) {
             $cantidadTotal = $cantidadTotal + $producto['precio'] * $producto['cantidad'];
         }
-
         return $cantidadTotal;
-    }
-    public function  EliminarProductoModificado($idDetalleComanda,$idComanda){
+    }*/
+    public function  EliminarProductoModificado($idDetalleComanda,$idComanda,$idProducto,$Cantidad){
         //1//2//3//6
         $entidadComanda=new entidadComanda;
         $entidadProducto=new entidadProducto;
-        $detalleComanda= new entidadDetalleComanda;
+        $entidaddetalleComanda= new entidadDetalleComanda;
         $formulario=new formDetalleComanda;
-        $detalleComanda->EliminarDetalleComanda($idDetalleComanda);
-        $listarDetalleComanda=$detalleComanda->listarDetalleComanda($idComanda);
-        $listaComandas = $entidadComanda->buscarComandaPorid($idComanda);
-        $lista =$entidadProducto->listarProductosActivos();
-        $formulario->formDetalleComandaShow($listarDetalleComanda, $listaComandas,$lista);
+        $Producto=$entidadProducto->buscarProductoPorId($idProducto);
+        $stock=$Producto[0]['stock'];
+        $total=$Cantidad+$stock;
+        $entidadProducto->ActualizarStockProductos($idProducto,$total);
+        $entidaddetalleComanda->EliminarDetalleComanda($idDetalleComanda);
+        
+        $this->buscarStockActualizado($idProducto,$idComanda);
     }
     public function  EliminarComanda($idComanda)
     {
-        include_once("../modelo/entidadDetalleComanda.php");
-        include_once("../modelo/entidadComanda.php");
-       
+        //1//3//5
         $entidadComanda = new entidadComanda;
-       
         $EliminarComanda = $entidadComanda -> actualizarComandaestado($idComanda);
-
-
-
-        include_once("../modelo/entidadComanda.php");
         $entidadComanda = new entidadComanda;
         $listaComandas = $entidadComanda->listarComandas();
-        include_once("../moduloVentas/formEmitirComanda.php");
         $formEmitirComandar = new formEmitirComanda;
         $formEmitirComandar->formEmitirComandaShow($listaComandas);
+    }
+    public function EliminarProducto($idProducto,$Cantidad){
+        //2
+        $entidadProducto=new entidadProducto;
+        $Producto=$entidadProducto->buscarProductoPorId($idProducto);
+        $stock=$Producto[0]['stock'];
+        $total=$Cantidad+$stock;
+        $entidadProducto->ActualizarStockProductos($idProducto,$total);
+        $this->buscarStock($idProducto);
     }
 
 }

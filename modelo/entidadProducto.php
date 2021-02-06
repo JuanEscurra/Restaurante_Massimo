@@ -81,6 +81,12 @@
             $resultado = mysqli_query($this->getConexion(),$consulta);
             $this->cerrarConexion();
         }
+        public function ActualizarStockProductos($idProducto,$cantidad) {
+
+            $consulta = "UPDATE producto SET stock=$cantidad where idProducto=$idProducto";
+            $resultado = mysqli_query($this->getConexion(),$consulta);
+            $this->cerrarConexion();
+        }
         
     }
 ?>

@@ -108,6 +108,8 @@ class formDetalleComanda
                                 <form action='../moduloVentas/getComanda.php' method=post>
                                 <input type='hidden' name='idDetCom' value=$detalle[idDetalleComanda]>
                                 <input type='hidden' name='idComa' value=$idcomanda>
+                                <input type='hidden' name='idProd' value=$d>
+                                <input type='hidden' name='Cantid' value=$detalle[cantidad]>
                                 <input class='buscar' type=submit name=btnEliminarProductoModificado value=Eliminar>
                                 </form>
                                 </td>

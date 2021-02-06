@@ -38,14 +38,20 @@ if (isset($_POST['btnEmitirComanda'])){
 }elseif (isset($_POST['btnEliminarProductoModificado'])){
     
     $nuevoControl = new controlComanda;
-    $nuevoControl->EliminarProductoModificado($_POST['idDetCom'],$_POST['idComa']);
+    $nuevoControl->EliminarProductoModificado($_POST['idDetCom'],$_POST['idComa'],$_POST['idProd'],$_POST['Cantid']);
 
 }elseif (isset($_POST['btnEliminarProductoComanda'])){
 
-    $filaProductos = $_POST['filaProductos'];
+    $filaProductos = intval($_POST['filaProductos']);
+    
+    $idProducto=$_SESSION['listaProductos'][$filaProductos]['idProducto'];
+    $Cantidad=$_SESSION['listaProductos'][$filaProductos]['cantidad'];
+
     array_splice($_SESSION['listaProductos'],$filaProductos,1);
+    
     $nuevoControl = new controlComanda;
-    $nuevoControl->AgregarComanda();
+    
+    $nuevoControl->EliminarProducto($idProducto,$Cantidad);
 
 }elseif (isset($_POST['idProducto'])){
     

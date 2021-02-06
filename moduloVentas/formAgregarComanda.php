@@ -66,10 +66,10 @@ class formAgregarComanda
             </div>
         
         <?php
-        if (!isset($_SESSION)) {
-            session_start();
+        if (!isset($_SESSION)||empty($_SESSION['listaProductos'])) {
+            
         }
-        if (isset($_SESSION["listaProductos"])) {
+        else{
         ?>
             <table class="table table-hover">
                 <thead>
@@ -105,9 +105,7 @@ class formAgregarComanda
                     ?>
                 </tbody>
             </table>
-            <form action="../moduloVentas/getComanda.php" method="post">
-                <input class='agregar' type="submit" name="btnEmitirComanda" value="Agregar">
-            </form>
+            
             
 <?php
         }
