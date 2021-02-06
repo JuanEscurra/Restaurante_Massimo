@@ -1,8 +1,8 @@
 <?php 
     include_once("../modelo/conexion.php");
     class entidadComanda extends Conexion{
-        public function listarComandaPorEstado($estado){
-            $queryComandas = "SELECT * from comanda where estado = '".$estado."'";
+        public function listarComandas(){
+            $queryComandas = "SELECT* from comanda WHERE fecha = CURDATE() and estado = 'PorAtender'";
             $resultado = mysqli_query($this->getConexion(),$queryComandas);
             $this->cerrarConexion();
             $resultados = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
