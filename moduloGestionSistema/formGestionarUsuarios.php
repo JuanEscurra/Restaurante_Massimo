@@ -2,7 +2,7 @@
 
 class formGestionarUsuarios
 {
-    public function formGestionarUsuariosShow($listaUsuarios,$idrol)
+    public function formGestionarUsuariosShow($listaUsuarios)
     {
 ?>  
         <!DOCTYPE html>

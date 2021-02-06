@@ -59,9 +59,7 @@ class listaCuentas
                                 echo "</td>";
                             echo "</tr>";
                         }
-
                         ?>
-
                     </tbody>
                 </table>
             </div>

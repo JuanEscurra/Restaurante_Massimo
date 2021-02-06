@@ -21,7 +21,6 @@
 								for($i=0;$i<count($Privilegios);$i++){?>
 
 								<form class="form-url" method="POST" action="<?php echo $Privilegios[$i]['url'] ?>">
-            						<input type="hidden" name="idrol" value="<?php echo $Privilegios[0]['idrol'] ?>">
             						<input class="input-campo" type="submit" name="<?php echo $Privilegios[$i]['privilegio'] ?>" value="<?php echo $Privilegios[$i]['nombre'] ?>">
         						</form>
         						<?php

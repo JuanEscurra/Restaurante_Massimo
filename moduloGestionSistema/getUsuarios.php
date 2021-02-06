@@ -1,9 +1,9 @@
 <?php
     if(isset($_POST['btnGestionarUsuarios']) or isset($_POST['btnRegresarModificar'])) {
-        $idrol = $_POST['idrol'];
+        
         include_once("controlGestionarUsuarios.php");
         $control = new controlGestionarUsuarios;
-        $control->obtenerUsuariosPrivilegios($idrol);
+        $control->obtenerUsuariosPrivilegios();
     }
     elseif(isset($_POST['btnModificar'])){
         $id = $_POST['idusuario'];

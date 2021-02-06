@@ -1,12 +1,12 @@
 <?php
     class controlGestionarUsuarios{
-        public function obtenerUsuariosPrivilegios($idrol){
+        public function obtenerUsuariosPrivilegios(){
             include_once("../modelo/entidadUsuario.php");
             include_once("formGestionarUsuarios.php");
             $usuarios = new entidadUsuario;
             $gestionarUsuario = new formGestionarUsuarios;
             $listaUsuarios = $usuarios -> obtenerUsuarios();
-            $gestionarUsuario -> formGestionarUsuariosShow($listaUsuarios,$idrol);
+            $gestionarUsuario -> formGestionarUsuariosShow($listaUsuarios);
         }
         public function modificarUsuarios($id){
             include_once("../modelo/entidadUsuario.php");

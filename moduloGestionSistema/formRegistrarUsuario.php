@@ -21,13 +21,15 @@ class registrarUsuario{
                 <div class="div-input">
                     <form class="form-r" action="getUsuarios.php" method="POST">
                         <label for="nombre">Nombre y Apellido</label>
-                        <input class="input" type="text" name="nombre" placeholder="Ingrese Nombre">
+                        <input class="input" type="text" name="nombre" placeholder="Ingrese Nombre" required>
                         <!-- <label for="usuario">Usuario</label>
                         <input type="text" name="usuario" placeholder="Ingrese Usuario"> -->
                         <label for="dni">DNI</label>
-                        <input class="input" type="text" name="dni" placeholder="Ingrese DNI">
+                        <input class="input" type="text" name="dni" placeholder="Ingrese DNI" required>
+
                         <label for="email">Email</label>
-                        <input  class="input"type="text" name="email" placeholder="Ingrese Email">
+                        <input  class="input"type="text" name="email" placeholder="Ingrese Email" required>
+
                         <label for="rol">Cargo</label>
                         <select name="rol">
                             <option value="3">Administrador</option>
@@ -36,11 +38,13 @@ class registrarUsuario{
                         </select>
                         <label for="pass">Contraseña</label>
                         <input class="input" type="text" name="pass" placeholder="Ingrese ruta de foto">
+
                         <label for="estado">Estado</label>
                         <select name="estado">
                             <option value="1">Habilitado</option>
                             <option value="0">Inhabilitado</option>
                         </select>
+                        
                         <input class="agregar" type="submit" value="Registrar usuario" name="btnRegistrandoUsuario">
                     </form>
                     <form action="getUsuarios.php" method="POST">
