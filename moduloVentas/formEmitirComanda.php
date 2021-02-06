@@ -1,6 +1,6 @@
 <?php
 class formEmitirComanda{
-    public function formEmitirComandaShow($listaComandas){
+    public function formEmitirComandaShow($listarComandas){
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -16,15 +16,16 @@ class formEmitirComanda{
                 <div class="div-header">
                     <img src="../img/logo_header.png" height="100" width="230">
                     <form action="../moduloSeguridad/getUsuario.php" method="POST">
-                                <input  class="volver" type="submit" name="btnInicio" value="Atras">
-                            </form>
+                        <input  class="volver" type="submit" name="btnInicio" value="Atras">
+                    </form>
                 </div>
                     <h1 class="titulo">Lista de Comandas</h1>
+                    
                     <form action="../moduloVentas/getComanda.php" method="post">
                         <input  class="agregar" type="submit" name="btnAgregarComanda" value="Agregar Comanda">
                     </form>
                     <?php
-                        if (!isset($listaComandas)) {
+                        if (!isset($listarComandas)) {
                                 echo 'no se encontro datos';
                             } else {
                         ?>
@@ -42,7 +43,7 @@ class formEmitirComanda{
                                 <tbody>
                                     <?php
                                         $i=0;
-                                        foreach ($listaComandas as $comanda) {
+                                        foreach ($listarComandas as $comanda) {
                                         $i++;
                                         echo "
                                             <tr>
