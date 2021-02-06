@@ -33,7 +33,7 @@ if (isset($_POST['btnEmitirComanda'])){
 }elseif (isset($_POST['btnCrearComanda'])){
     
     $nuevoControl = new controlComanda;
-    $nuevoControl->CrearComanda($_POST['NumeroComanda'],$_POST['NumeroMesa'], $_POST['cliente'], $_SESSION['listaProductos']);
+    $nuevoControl->CrearComanda($_POST['NumeroMesa'], $_SESSION['listaProductos']);
 
 }elseif (isset($_POST['btnEliminarProductoModificado'])){
     

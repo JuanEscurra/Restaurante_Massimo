@@ -8,8 +8,9 @@
             $resultados = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
             return $resultados;
         }
-        public function insertarComanda($numeroComanda,$numMesa, $cliente, $total) {
-            $query = "INSERT INTO comanda (`numeroComanda`,`fecha`,`NumeroMesa`, `cliente`, `total`, `estado`) VALUES ('$numeroComanda',CURDATE(),$numMesa,'$cliente',$total,'PorAtender')";
+        public function insertarComanda($numMesa, $total) {
+            $query = "INSERT INTO comanda (`fecha`,`NumeroMesa`, `total`, `estado`) VALUES (CURDATE(),
+            $numMesa,$total,'PorAtender')";
             $resultado = mysqli_query($this->getConexion(),$query);
             $this->cerrarConexion();
             
