@@ -56,8 +56,8 @@ class entidadUsuario extends Conexion{
 		$resultado = mysqli_query($this->getConexion(),$consulta3);
 		$this->cerrarConexion();
 	}
-	public function agregandoUsuario($nombre,$usuario,$dni,$foto,$rol,$estado,$pass,$email,$secreto){
-		$consulta4 = "INSERT INTO usuario(nombre, usuario, dni, pass, email, foto, idrol, estado, secreto) VALUES ('$nombre', '$usuario', '$dni', '$pass', '$email', '$foto', '$rol', '$estado', '$secreto')";
+	public function agregandoUsuario($nombre,$usuario,$dni,$foto,$rol,$pass,$email,$secreto){
+		$consulta4 = "INSERT INTO usuario(nombre, usuario, dni, pass, email, foto, idrol, estado, secreto) VALUES ('$nombre', '$usuario', '$dni', '$pass', '$email', '$foto', '$rol', 1, '$secreto')";
 		echo $consulta4;
 		$resultado = mysqli_query($this->getConexion(),$consulta4);
 		$this->cerrarConexion();

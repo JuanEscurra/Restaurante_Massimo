@@ -44,7 +44,7 @@ class formGestionarUsuarios
                         <?php
                         foreach ($listaUsuarios as $user) {
                             echo '<tr class="tr">';
-                            echo "<td><img src='$user[foto]' alt='foto usuario' class='fotoid'></td>";
+                            echo "<td><img src='$user[foto]' alt='foto usuario' class='fotoid' width=100px height=100px></td>";
                             echo "<td>$user[nombre]</td>";
                             echo "<td>$user[usuario]</td>";
                             echo "<td>$user[email]</td>";

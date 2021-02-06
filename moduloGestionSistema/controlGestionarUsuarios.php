@@ -52,12 +52,15 @@
             $formAdd = new registrarUsuario;
             $formAdd->addUsuarioShow();
         }
-        public function registrandoUsuario($nombre,$usuario,$dni,$foto,$rol,$estado,$pass,$email,$secreto){
+        public function registrandoUsuario($nombre,$usuario,$dni,$foto=[],$rol,$pass,$email,$secreto){
             include_once('../modelo/entidadUsuario.php');
             include_once('../shared/formMensajeSistema.php');
             include_once('formGestionarUsuarios.php');
+
+            $ruta = "../img/".$foto['imgPerfil']['name'];
+            move_uploaded_file($foto['imgPerfil']['tmp_name'],$ruta);
             $addUsuario = new entidadUsuario;
-            $addUsuario-> agregandoUsuario($nombre,$usuario,$dni,$foto,$rol,$estado,$pass,$email,$secreto);
+            $addUsuario-> agregandoUsuario($nombre,$usuario,$dni,$ruta,$rol,$pass,$email,$secreto);
             $nuevoMensaje = new formMensajeSistema;
             $inicio = new formGestionarUsuarios;
             if($addUsuario==TRUE){

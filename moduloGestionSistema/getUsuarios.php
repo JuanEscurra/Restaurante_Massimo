@@ -47,19 +47,14 @@
         $email = $_POST['email'];
         $usuario = substr($nombre,0,3).substr($dni,0,3).substr($email,0,3);
         $rol = $_POST['rol'];
-        if($rol==1){
-            $foto = '../img/cajero.png';
-        }elseif($rol==2){
-            $foto = '../img/recepcionista.png';
-        }else{
-            $foto = '../img/administrador.png';
-        }
-        $estado = $_POST['estado'];
         $pass = md5($_POST['pass']);
         $secreto = substr($nombre,0,3).substr($dni,0,3);
+        $foto = $_FILES;
+        var_dump($_FILES);
         include_once('controlGestionarUsuarios.php');
+        move_uploaded_file($_FILES['imgPerfil']['tmp_name'],"img/".$_FILES['imgPerfil']['name']);
         $controlAdding = new controlGestionarUsuarios;
-        $controlAdding -> registrandoUsuario($nombre,$usuario,$dni,$foto,$rol,$estado,$pass,$email,$secreto);
+        $controlAdding -> registrandoUsuario($nombre,$usuario,$dni,$foto,$rol,$pass,$email,$secreto);
     }
     elseif (isset($_POST['btn'])) {
             $rol = $_POST['idrol'];

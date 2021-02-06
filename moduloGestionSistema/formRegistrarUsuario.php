@@ -19,7 +19,7 @@ class registrarUsuario{
                 </div>
                 <h1 class="titulo">Agregar Usuario</h1>
                 <div class="div-input">
-                    <form class="form-r" action="getUsuarios.php" method="POST">
+                    <form class="form-r" action="getUsuarios.php" method="POST" enctype="multipart/form-data">
                         <label for="nombre">Nombre y Apellido</label>
                         <input class="input" type="text" name="nombre" placeholder="Ingrese Nombre" required>
                         <!-- <label for="usuario">Usuario</label>
@@ -37,19 +37,22 @@ class registrarUsuario{
                             <option value="1">Cajero</option>
                         </select>
                         <label for="pass">Contraseña</label>
-                        <input class="input" type="text" name="pass" placeholder="Ingrese ruta de foto">
+                        <input class="input" type="text" name="pass" placeholder="Ingrese contraseña">
 
                         <label for="estado">Estado</label>
                         <select name="estado">
                             <option value="1">Habilitado</option>
                             <option value="0">Inhabilitado</option>
                         </select>
-                        
+
+                        <label for="imgPerfil">Foto: </label>
+                        <input type="file" name="imgPerfil">
+
                         <input class="agregar" type="submit" value="Registrar usuario" name="btnRegistrandoUsuario">
                     </form>
                     <form action="getUsuarios.php" method="POST">
-                    <input class="volver" type="submit" value="Regresar" name="btnRegresarModificar">
-                </form>
+                        <input class="volver" type="submit" value="Regresar" name="btnRegresarModificar">
+                    </form>
                 </div>
             </body>
             </html>
