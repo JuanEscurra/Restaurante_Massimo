@@ -25,7 +25,7 @@ class registrarUsuario{
                         <!-- <label for="usuario">Usuario</label>
                         <input type="text" name="usuario" placeholder="Ingrese Usuario"> -->
                         <label for="dni">DNI</label>
-                        <input class="input" type="number" max=99999999 name="dni" placeholder="Ingrese DNI" required>
+                        <input class="input" type="number" maxlength="8" name="dni" placeholder="Ingrese DNI" required>
 
                         <label for="email">Email</label>
                         <input  class="input" type="email" name="email" placeholder="Ingrese Email" required>
