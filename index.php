@@ -10,5 +10,5 @@ if(!empty($_SESSION)) {
     $objFormAutenticar = new formAutenticarUsuario;
     $objFormAutenticar -> formAutenticarUsuarioShow();
 }
-var_dump($_SESSION);
+
 ?>

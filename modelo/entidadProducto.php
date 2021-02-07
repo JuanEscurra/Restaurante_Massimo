@@ -50,7 +50,7 @@
         }
         
         public function listarProductosActivos() {
-            $consulta = "SELECT * FROM producto WHERE estado = 1";
+            $consulta = "SELECT * FROM producto WHERE estado = 1 and stock <> 0";
             $resultado = mysqli_query($this->getConexion(),$consulta);
             $productos = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
             return $productos;

@@ -49,7 +49,7 @@ class formDetalleComanda
                         <input type="hidden" name="idComanda" value="<?php echo $listaComandas[0]['idcomanda'] ?>">
                         <select class="input"  name="btnidProductoActualizado" onchange="this.form.submit()">
 
-                            <option requered><?php echo $_SESSION['nombre'] ?></option>
+                            <option requered><?php echo $_SESSION['nombreProducto'] ?></option>
                             <?php  
                             foreach ($lista as $values) { ?>
                             <option  value="<?php echo $values['idProducto'] ?>"><?php echo $values['nombre'] ?></option> 
