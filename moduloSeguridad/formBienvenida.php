@@ -7,6 +7,7 @@
 				<html>
 				<head>
 					<title>Formulario Bienvenida</title>
+					<meta http-equiv="Expires" content="0">
 					<link rel="stylesheet" href="../estilos/gestionarUsuarios.css">
                 	
                 	<link rel="shorcut icon" type="image/x-icon" href="../img/ico   no.ico">
@@ -17,6 +18,8 @@
 				<body>
 					<div class="logo">
 							<img src="../img/logo_header.png" height="100" width="230">
+
+                            <h3 class="text_usuario">Usuario: <?php echo $_SESSION['nombre_usuario'] ?></h3>
 							<form action="getUsuario.php" method="POST">
 								<input class="volver" type="submit" name="btnCerrarSesion" value="Cerrar Sesión">
 							</form>

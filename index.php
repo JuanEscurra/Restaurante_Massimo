@@ -2,7 +2,7 @@
 
 session_start();
 
-if(!empty($_SESSION)) {
+if(!empty($_SESSION)) { 
     header('Location: moduloSeguridad/getUsuario.php');
     die();
 } else {
@@ -10,5 +10,5 @@ if(!empty($_SESSION)) {
     $objFormAutenticar = new formAutenticarUsuario;
     $objFormAutenticar -> formAutenticarUsuarioShow();
 }
-var_dump($_SESSION);
+
 ?>

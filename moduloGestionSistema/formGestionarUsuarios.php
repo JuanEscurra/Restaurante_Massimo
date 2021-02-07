@@ -18,6 +18,9 @@ class formGestionarUsuarios
         <body>
             <div class="div-header">
                  <img src="../img/logo_header.png" height="100" width="230">
+                 <form action="../moduloSeguridad/getUsuario.php" method="POST">
+                        <input  class="volver" type="submit" name="btnInicio" value="Atras">
+                    </form>
             </div>
             <h1 class="titulo">Gestionar Usuarios</h1>
             <div class="div-table">
@@ -78,9 +81,7 @@ class formGestionarUsuarios
                     <form action="getUsuarios.php" method="POST">
                         <input  class="volver" type="submit" name="btnRegistrarUsuario" value="Registrar">
                     </form>
-                    <form action="../moduloSeguridad/getUsuario.php" method="POST">
-                        <input  class="volver" type="submit" name="btnInicio" value="Atras">
-                    </form>
+                    
                 </div>
             </div>
         </body>

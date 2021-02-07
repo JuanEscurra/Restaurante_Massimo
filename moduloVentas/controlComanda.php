@@ -36,7 +36,7 @@ class controlComanda
         $Producto = $producto->buscarProductoPorId($idProducto);
         //$_SESSION['mesa'];
         $_SESSION['stock'] =$Producto[0]['stock'];
-        $_SESSION['nombre'] =$Producto[0]['nombre'];
+        $_SESSION['nombreProducto'] =$Producto[0]['nombre'];
         $formulario->formAgregarComandaShow($listaProductos);
     }
     public function buscarStockActualizado($id,$idComanda){   
@@ -50,7 +50,7 @@ class controlComanda
         $listaComandas = $entidadComanda->buscarComandaPorid($idComanda);
         $Producto = $producto->buscarProductoPorId($id);
         $_SESSION['stock'] =$Producto[0]['stock'];
-        $_SESSION['nombre'] =$Producto[0]['nombre'];
+        $_SESSION['nombreProducto'] =$Producto[0]['nombre'];
         $formulario->formDetalleComandaShow($listarDetalleComanda, $listaComandas,$listaProductos);
     }
     public function AgregarProductoComanda($nombreProducto,$cantidadProducto){   
@@ -60,7 +60,7 @@ class controlComanda
         $Producto=$producto->listarProductosPorNombre($nombreProducto);
         
         $_SESSION['stock'] =$Producto[0]['stock'];
-        $_SESSION['nombre'] =$Producto[0]['nombre'];
+        $_SESSION['nombreProducto'] =$Producto[0]['nombre'];
         $arrayproductos = array("idProducto" => $Producto[0]['idProducto'], "tipo" => $Producto[0]['tipo'], 
                                 "nombre" => $Producto[0]['nombre'], "cantidad" => $cantidadProducto,
                                 "precio"=> $Producto[0]['precio']);
