@@ -12,6 +12,14 @@ class formAgregarCliente{
                 <link rel="shorcut icon" type="image/x-icon" href="../img/ico   no.ico">
                 <title>Emitir Comprobantes</title>
             </head>
+            <style>
+            @media print{
+                .parte02,.btn{
+                    display: none;
+                }
+
+            }
+         </style>
             <body>
                 <div class="div-header">
                     <img src="../img/logo_header.png" height="100" width="230">
@@ -86,7 +94,7 @@ class formAgregarCliente{
                             }?>
                             Resumen:<br>
                             Total: <input type="text"  name="pago" value="<?php echo $listacomanda[0]['total'] ?>"><br>
-                             <input type="submit" value="Procesar" name="btnInsertar">
+                             <input type="submit" value="Procesar" name="btnInsertar" onclick="print()">
                     </form>
                         </body>
                     </html> 
