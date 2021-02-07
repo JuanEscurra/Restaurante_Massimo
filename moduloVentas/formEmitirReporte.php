@@ -10,8 +10,16 @@ class formEmitirReporte {
                 <link rel="stylesheet" href="../estilos/gestionarUsuarios.css">
                 <link rel="stylesheet" href="../estilos/estilos_generales.css">
                 <link rel="shorcut icon" type="image/x-icon" href="../img/ico   no.ico">
-                <title>Emitir Comprobantes</title>
+                <title>Emitir Reporte</title>
             </head>
+            <style>
+            @media print{
+                .volver,.div-header{
+                    display: none;
+                }
+
+            }
+            </style>
             <body>
                 <div class="div-header">
                     <img src="../img/logo_header.png" height="100" width="230">
@@ -19,34 +27,52 @@ class formEmitirReporte {
                                 <input  class="volver" type="submit" name="btnInicio" value="Atras">
                             </form>
                 </div>
-                    <h1 class="titulo">Lista de Comprobantes activos</h1>
-                    <?php
+                    <h1 class="titulo">Lista de Boletas</h1>
+                    <?php 
                         if ($listaBoletas==null) {
                                 echo 'no se encontro datos';
                             } else {
-                                var_dump($listaBoletas);
+                                
                         ?>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Numero de Mesa</th>
+                                        <th scope="col">Fecha - Hora</th>
+                                        <th scope="col">Serie - Numero </th>
                                         <th scope="col">Total</th>
-                                        <th scope="col">Estado</th>
-                                        <th>Acciones</th>
+                                        <th scope="col">Moneda</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php
-                                        
+                                    <?php
+                                        $i=0;
+                                        $Total=0;
+                                        foreach ($listaBoletas as $Boletas) {
+                                            $i++;
+                                        echo "
+                                            <tr>
+                                                <td>" . $i . "</td>
+                                                <td>" . $Boletas['fecha']."</td>
+                                                <td>" . $Boletas['serie']." - ".$Boletas['numero']."</td>
+                                                <td>" . $Boletas['pago']."</td>
+                                                <td>" . $Boletas['moneda']."</td>
+                                            </tr>";
+                                            $Total = $Boletas['pago']+$Total;
+                                        }
                                     ?>
-
                                 </tbody>
+                                <center>
+                                Total : <?php echo $Total; ?>
+                            </center>
+                            <input class="volver" type="submit" value="Reporte" name="btnEmitirReporte" onclick="print()">
+                            <br>
                             </table>
-                        
+                            
                         <?php
-                    }?>
+                        }
+                        ?>
                         </body>
                     </html> 
                     <?php
