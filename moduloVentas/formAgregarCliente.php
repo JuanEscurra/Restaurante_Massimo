@@ -37,24 +37,28 @@ class formAgregarCliente{
                             <p>Email: ventas@dominio.com</p>                    
                         </div>    
                         <div class="datos_negocio">
+                            <h1 class="ruc">RUC: 10726573323</h1>
                             <h1 class="title">Boleta de Venta</h1>
-                            
+                            <label for="">Serie: </label>
+                            <input  class="serie" type="text"  name="serie" value="001"><br>
+                            <label for="">Numero: </label>
+                            <input class="num" type="text" min="7" max="7" name="numero" value="<?php echo substr("000000",0,7-strlen($listacomanda[0]['idcomanda'])) . $listacomanda[0]['idcomanda'];?>"><br>
                         </div>
                     </div>
-                    <label for="">Fecha: </label>
-                    <?php echo $listacomanda[0]['fecha'] ?><br>
-                    <input type="hidden" name="idComanda" value="<?php echo $listacomanda[0]['idcomanda'] ?>">
-                    <label for="">Tipo de Comprobante:  </label>
-                    <input type="text"  name="tcomp" value="Boleta"><br>
-                    <label for="">Serie: </label>
-                    <input type="text"  name="serie" value="001"><br>
-                    <?php
-                    ?>
-                    <label for="">Numero: </label>
-                    
-                    <input type="text" min="7" max="7" name="numero" value="<?php echo substr("000000",0,7-strlen($listacomanda[0]['idcomanda'])) . $listacomanda[0]['idcomanda'];?>"><br>
-                    <label for="">Moneda: </label>
-                    <input type="text"  name="moneda" value="Soles"><br>
+                    <!-- fecha -->
+                    <div class="datos_2">
+                        <label for="">Fecha: </label>
+                                <?php echo $listacomanda[0]['fecha'] ?><br>
+                        <input type="hidden" name="idComanda" value="<?php echo $listacomanda[0]['idcomanda'] ?>"> 
+                        <label for="">Tipo de Comprobante:  </label>
+                        <input type="text"  name="tcomp" value="Boleta"><br>
+                        
+                        <?php
+                        ?>
+                        
+                        <label for="">Moneda: </label>
+                        <input type="text"  name="moneda" value="Soles"><br>
+                    </div>
                         <?php
                             if ($listarDetalleComanda==null) {
                                     echo 'no se encontro datos';
@@ -103,11 +107,17 @@ class formAgregarCliente{
                                 </table>
                                 <?php
                                 }?>
-                                Resumen:<br>
-                                Total: <input type="text"  name="pago" value="<?php echo $listacomanda[0]['total'] ?>"><br>
-                                 <input type="submit" value="Procesar" name="btnInsertar" onclick="print()">
+                                <div class="datos_2">
+                                    <label>Resumen </label> <br>
+                                    <label for=""> Total: </label>
+                                    <input type="text"  name="pago" value="<?php echo $listacomanda[0]['total'] ?>"><br>
+                                    
+                                </div>
+                                 
+                            <input type="submit" value="Procesar" name="btnInsertar" onclick="print()">
                     </form>
-                        </body>
+                    
+                    </body>
                     </html> 
                     <?php
                 }
