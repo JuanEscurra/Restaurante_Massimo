@@ -100,6 +100,13 @@
             return $resultados;
 
         }
+        public function actualizarComandaPagado($idcomanda){
+            $idComanda = intval($idcomanda);
+            $queryComandas = "UPDATE comanda set estado = 'Pagado' where idcomanda=$idComanda";
+            $resultado = mysqli_query($this->getConexion(),$queryComandas);
+            $this->cerrarConexion();
+        }
+        
         
     }
 ?>

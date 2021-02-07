@@ -20,24 +20,22 @@ class formAgregarCliente{
                             </form>
                 </div>
                     <h1 class="titulo">Boletas</h1>
+                    
                 <form action="getComprobante.php" method="POST">
-                <input type="hidden" name="idComanda" value="<?php echo $listacomanda[0]['idcomanda'] ?>">
-                Tipo de Comprobante: <select name="opcComp">
-                <option value="Boleta">Boleta</option>
-                <option value="Factura">Factura</option>
-                </select><br>
-                <label for="">Serie: </label>
-                <input type="text" name="sr" ><br>
-                <label for="">Numero: </label>
-                <input type="text" name="nmr"><br>
-                <label for="">Nombre de Cliente: </label>
-                <input type="text" name="nombre"><br>
-                <label for="">DNI: </label>
-                <input type="text" name="dni"><br>
                 <label for="">Fecha: </label>
-                <?php echo $listacomanda[0]['fecha'] ?><br>
-                <label for="">Numero de Mesa: </label>
-                <?php echo $listacomanda[0]['numeroMesa'] ?><br>
+                <?php echo $listacomanda[0]['fecha'] ?><br>s
+                <input type="hidden" name="idComanda" value="<?php echo $listacomanda[0]['idcomanda'] ?>">
+                <label for="">Tipo de Comprobante:  </label>
+                <input type="text"  name="tcomp" value="Boleta"><br>
+                <label for="">Serie: </label>
+                <input type="text"  name="serie" value="001"><br>
+                <?php
+                ?>
+                <label for="">Numero: </label>
+                
+                <input type="text" min="7" max="7" name="numero" value="<?php echo substr("000000",0,7-strlen($listacomanda[0]['idcomanda'])) . $listacomanda[0]['idcomanda'];?>"><br>
+                <label for="">Moneda: </label>
+                <input type="text"  name="moneda" value="Soles"><br>
                     <?php
                         if ($listarDetalleComanda==null) {
                                 echo 'no se encontro datos';
@@ -48,21 +46,23 @@ class formAgregarCliente{
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">nombre</th>
-                                        <th scope="col">precion</th>
+                                        <th scope="col">precio</th>
                                         <th scope="col">cantidad</th>
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
+
                                         $i=0;
                                         foreach ($listarDetalleComanda as $detalle) {
                                         $i++;
-
-
+                                        
+                                        echo " <tr>
+                                        <td>" . $i . "</td>";
                                 ?>
 
-                                    <tr>
+                                    
                                 <?php
 
                                         $d = $detalle['idproducto'];
@@ -70,27 +70,23 @@ class formAgregarCliente{
                                         $det = $obj->buscarProductoPorId($d);
                                         foreach ($det as $de) {
                             
-                                        echo "  <td>" . $i . "</td>
+                                        echo "  
                                                 <td>" . $de['nombre'] . "</td>
                                                 <td>" . $de['precio'] . "</td>";
                                             }
-                                        }
-                                        echo "<td>" . $detalle['cantidad'] . "</td>
                                         
+                                        echo "<td>" . $detalle['cantidad'] . "</td>
                                         </tr>";
 
 
-                                    ?>
+                                  }  ?>
                                 </tbody>
                             </table>
                             <?php
                             }?>
                             Resumen:<br>
-                            Total: <input type="text" name="pago"><br>
-                            Descuento: <input type="text"  name="dsct" value="0"><br>
-                            Vuelto: <input type="text"  name="vlt" value="0"><br>
-                            
-                            <input type="submit" value="Procesar" name="btnInsertar">
+                            Total: <input type="text"  name="pago" value="<?php echo $listacomanda[0]['total'] ?>"><br>
+                             <input type="submit" value="Procesar" name="btnInsertar">
                     </form>
                         </body>
                     </html> 

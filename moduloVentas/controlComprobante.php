@@ -22,20 +22,21 @@ class controlComprobante
         $entidadDetalleComanda = new entidadDetalleComanda;
         $listarDetalleComanda = $entidadDetalleComanda -> listarDetalleComanda($idcomanda);
         $listacomanda = $entidadComanda->buscarComandaPorid($idcomanda);
-        
         include_once("../moduloVentas/formAgregarCliente.php");
         $formEmitirComprobant = new formAgregarCliente;
         $formEmitirComprobant->formAgregarClienteShow($listarDetalleComanda,$listacomanda);
 
-    }
-    /*public function insertarComprobante($idcomanda,$opc,$serie,$numero,$nombre,$dni,$pago,$descuento,$vuelto)
-    {
+    }   
+    public function insertarComprobante($idcomanda,$tcomp,$serie,$numero,$moneda,$pago)
+    {   
         include_once("../modelo/entidadComprobante.php");
-        var_dump($idcomanda,$opc,$serie,$numero,$nombre,$dni,$pago,$descuento,$vuelto);
+        include_once("../modelo/entidadComanda.php");
         $entidadComprobante = new entidadComprobante;
-        $listaComandas= $entidadComprobante->insertarComprobante($idcomanda,$opc,$serie,$numero,$nombre,$dni,$pago,$descuento,$vuelto);
+        $entidadComanda = new entidadComanda;
+        $datoModificado = $entidadComanda->actualizarComandaPagado($idcomanda);
+        $listaComandas= $entidadComprobante->insertarComprobante($idcomanda,$tcomp,$serie,$numero,$moneda,$pago);
         $this->listarComandaPorEstado();
 
-    }*/
+    }
 
 }
