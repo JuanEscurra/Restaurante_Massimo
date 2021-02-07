@@ -45,9 +45,10 @@ class formEmitirComanda{
                                 <tbody>
                                     <?php
                                         $i=0;
+                                        
                                         foreach ($listarComandas as $comanda) {
-                                            $mesa[$i]=$comanda['numeroMesa'];
-
+                                            
+                                        $mesa[$i]=$comanda['numeroMesa'];
                                         $i++;
                                         echo "
                                             <tr>
@@ -70,9 +71,12 @@ class formEmitirComanda{
                                                     </form>
                                                 </td>
                                             </tr>";
+
+                                            
+                                            
                                         }
                                         
-                                        $_SESSION['mesas']=$mesa;
+                                        $_SESSION['mesa']=$mesa;
                                     ?>
                                 </tbody>
                             </table>

@@ -59,7 +59,7 @@ if (isset($_POST['btnEmitirComanda'])){
     $nuevoControl->EliminarProducto($idProducto,$Cantidad);
 
 }elseif (isset($_POST['idProducto'])){
-    
+    $_SESSION['mesa'];
     $nuevoControl = new controlComanda;
     $nuevoControl->buscarStock($_POST['idProducto']);
 

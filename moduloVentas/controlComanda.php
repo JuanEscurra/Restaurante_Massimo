@@ -34,6 +34,7 @@ class controlComanda
         $listaProductos =$producto->listarProductosActivos();
         //se guarda los campos del producto seleccionado $Producto
         $Producto = $producto->buscarProductoPorId($idProducto);
+        $_SESSION['mesa'];
         $_SESSION['stock'] =$Producto[0]['stock'];
         $_SESSION['nombre'] =$Producto[0]['nombre'];
         $formulario->formAgregarComandaShow($listaProductos);
@@ -116,6 +117,7 @@ class controlComanda
         //1
         $entidadComanda = new entidadComanda;
         $entidadComanda->actualizarComandaestadoAtendido($idComanda);
+        $_SESSION['mesa']="";
         $this->listarComandas();
         
     }
