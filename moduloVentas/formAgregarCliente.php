@@ -15,7 +15,7 @@ class formAgregarCliente{
             </head>
             <style>
             @media print{
-                .parte02,.btn{
+                .volver,.btn{
                     display: none;
                 }
 
@@ -114,7 +114,7 @@ class formAgregarCliente{
                                     
                                 </div>
                                  
-                            <input type="submit" value="Procesar" name="btnInsertar" onclick="print()">
+                            <input class="volver" type="submit" value="Procesar" name="btnInsertar" onclick="print()">
                     </form>
                     
                     </body>
