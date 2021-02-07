@@ -12,15 +12,15 @@ if (isset($_POST['btnEmitirComprobante'])) {
     include_once("controlComprobante.php");
     $nuevoControl = new controlComprobante;
     $nuevoControl->listarComandaPorEstado();
-}elseif (isset($_POST['btnRegistrar'])) {
+}elseif (isset($_POST['btnEmitir'])) {
     include_once("controlComprobante.php");
     $nuevoControl = new controlComprobante;
     $nuevoControl->detalleComanda($_POST['idComanda']);
 } 
 elseif (isset($_POST['btnInsertar'])) {
-    include_once("controlComprobante.php");
-    $nuevoControl = new controlComprobante;
-    $nuevoControl->insertarComprobante($_POST['idComanda'],$_POST['opcComp'],$_POST['sr'],$_POST['nmr'],$_POST['nombre'],$_POST['dni'],$_POST['pago'],$_POST['dsct'],$_POST['vlt']);
+    
+    var_dump($_POST);
+    /*$nuevoControl->insertarComprobante($_POST['idComanda'],$_POST['opcComp'],$_POST['sr'],$_POST['nmr'],$_POST['nombre'],$_POST['dni'],$_POST['pago'],$_POST['dsct'],$_POST['vlt']);*/
 } 
  else {
     include_once('../shared/formMensajeSistema.php');

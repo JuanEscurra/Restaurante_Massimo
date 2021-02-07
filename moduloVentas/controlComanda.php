@@ -117,6 +117,7 @@ class controlComanda
         //1
         $entidadComanda = new entidadComanda;
         $entidadComanda->actualizarComandaestadoAtendido($idComanda);
+        
         $_SESSION['mesa']="";
         $this->listarComandas();
         
