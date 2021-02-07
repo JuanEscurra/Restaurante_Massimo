@@ -1,6 +1,6 @@
 <?php
 class formAgregarCliente{
-    public function formAgregarClienteShow($listaComandas,$idcomanda){
+    public function formAgregarClienteShow($listarDetalleComanda,$listacomanda){
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -15,23 +15,31 @@ class formAgregarCliente{
             <body>
                 <div class="div-header">
                     <img src="../img/logo_header.png" height="100" width="230">
-                    <form action="../moduloSeguridad/getUsuario.php" method="POST">
-                                <input  class="volver" type="submit" name="btnInicio" value="Atras">
+                    <form action="../moduloVentas/getComprobante.php" method="POST">
+                                <input  class="volver" type="submit" name="btnEmitirComprobante" value="Atras">
                             </form>
                 </div>
                     <h1 class="titulo">Boletas</h1>
                 <form action="getComprobante.php" method="POST">
-                
+                <input type="hidden" name="idComanda" value="<?php echo $listacomanda[0]['idcomanda'] ?>">
                 Tipo de Comprobante: <select name="opcComp">
                 <option value="Boleta">Boleta</option>
                 <option value="Factura">Factura</option>
-                </select><br><br>
-                Serie:  <input type="text" name="sr"><br><br>
-                Numero: <input type="text" name="nmr"><br><br>
-                Nombre de Cliente:  <input type="text" name="nombre"><br><br>
-                DNI: <input type="text" name="dni">
+                </select><br>
+                <label for="">Serie: </label>
+                <input type="text" name="sr" ><br>
+                <label for="">Numero: </label>
+                <input type="text" name="nmr"><br>
+                <label for="">Nombre de Cliente: </label>
+                <input type="text" name="nombre"><br>
+                <label for="">DNI: </label>
+                <input type="text" name="dni"><br>
+                <label for="">Fecha: </label>
+                <?php echo $listacomanda[0]['fecha'] ?><br>
+                <label for="">Numero de Mesa: </label>
+                <?php echo $listacomanda[0]['numeroMesa'] ?><br>
                     <?php
-                        if ($listaComandas==null) {
+                        if ($listarDetalleComanda==null) {
                                 echo 'no se encontro datos';
                             } else {
                         ?>
@@ -39,26 +47,39 @@ class formAgregarCliente{
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Cantidad</th>
-                                        <th scope="col">Descripcion</th>
-                                        <th scope="col">Precio</th>
-                                        <th scope="col">Valor</th>
+                                        <th scope="col">nombre</th>
+                                        <th scope="col">precion</th>
+                                        <th scope="col">cantidad</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
                                         $i=0;
-                                        foreach ($listaComandas as $comanda) {
+                                        foreach ($listarDetalleComanda as $detalle) {
                                         $i++;
-                                        echo "
-                                            <tr>
-                                                <td>" . $i . "</td>
-                                                <td>" . $comanda['cantidad'] . "</td>
-                                                <td>" . $comanda['nombre'] . "</td>
-                                                <td>" . $comanda['precio'] . "</td>
-                                                <td>" . $comanda['valor'] . "</td>
-                                            </tr>";
+
+
+                                ?>
+
+                                    <tr>
+                                <?php
+
+                                        $d = $detalle['idproducto'];
+                                        $obj = new entidadProducto();
+                                        $det = $obj->buscarProductoPorId($d);
+                                        foreach ($det as $de) {
+                            
+                                        echo "  <td>" . $i . "</td>
+                                                <td>" . $de['nombre'] . "</td>
+                                                <td>" . $de['precio'] . "</td>";
+                                            }
                                         }
+                                        echo "<td>" . $detalle['cantidad'] . "</td>
+                                        
+                                        </tr>";
+
+
                                     ?>
                                 </tbody>
                             </table>
@@ -68,7 +89,7 @@ class formAgregarCliente{
                             Total: <input type="text" name="pago"><br>
                             Descuento: <input type="text"  name="dsct" value="0"><br>
                             Vuelto: <input type="text"  name="vlt" value="0"><br>
-                            <input type=number name="idComanda" value= readonly required hidden>
+                            
                             <input type="submit" value="Procesar" name="btnInsertar">
                     </form>
                         </body>
