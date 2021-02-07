@@ -1,15 +1,16 @@
 <?php
+include_once("controlGestionarUsuarios.php");
+$control = new controlGestionarUsuarios;
+
     if(isset($_POST['btnGestionarUsuarios']) or isset($_POST['btnRegresarModificar'])) {
         
-        include_once("controlGestionarUsuarios.php");
-        $control = new controlGestionarUsuarios;
-        $control->obtenerUsuariosPrivilegios();
+        $control->listarUsuarios();
+    } elseif(isset($_POST['tipoUsuario'])) {
+        $control->listarUsuarios($_POST['tipoUsuario']);
     }
     elseif(isset($_POST['btnModificar'])){
         $id = $_POST['idusuario'];
-        include_once("controlGestionarUsuarios.php");
-        $controlModificar = new controlGestionarUsuarios;
-        $controlModificar->modificarUsuarios($id);
+        $control->modificarUsuarios($id);
     }
     elseif(isset($_POST['btnActualizando'])){
         $id = $_POST['id'];
@@ -26,18 +27,14 @@
             $foto = '../img/administrador.png';
         }
         include_once('controlGestionarUsuarios.php');
-        $controlModificando = new controlGestionarUsuarios;
-        $controlModificando->actualizanUsuariosPrivilegios($id,$nombre,$usuario,$dni,$email,$foto,$rol);
+        $control->actualizanUsuariosPrivilegios($id,$nombre,$usuario,$dni,$email,$foto,$rol);
     }
     elseif(isset($_POST['btnInhabilitar'])){
         $idusuario = $_POST['idusuario'];
         $estado = $_POST['estado'];
-        include_once('controlGestionarUsuarios.php');
-        $inhabilitar = new controlGestionarUsuarios;
-        $inhabilitar->habilitarInhabilitarUsuario($idusuario,$estado);
+        $control->habilitarInhabilitarUsuario($idusuario,$estado);
     }
     elseif(isset($_POST['btnRegistrarUsuario'])){
-        include_once('controlGestionarUsuarios.php');
         $controlAdd = new controlGestionarUsuarios;
         $controlAdd->mostrarFormAddUsuario();
     }
@@ -51,9 +48,7 @@
         $secreto = substr($nombre,0,3).substr($dni,0,3);
         $foto = $_FILES;
         var_dump($_FILES);
-        include_once('controlGestionarUsuarios.php');
-        $controlAdding = new controlGestionarUsuarios;
-        $controlAdding -> registrandoUsuario($nombre,$usuario,$dni,$foto,$rol,$pass,$email,$secreto);
+        $control -> registrandoUsuario($nombre,$usuario,$dni,$foto,$rol,$pass,$email,$secreto);
     }
     elseif (isset($_POST['btn'])) {
             $rol = $_POST['idrol'];

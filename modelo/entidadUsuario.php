@@ -30,11 +30,12 @@ class entidadUsuario extends Conexion{
 		$idrol = $rol[0]['idrol'];
 		return $idrol;
 	}
-	public function obtenerUsuarios(){
-		$consulta = "SELECT u.idusuario, u.foto, u.nombre, u.usuario, u.email, u.estado, r.cargo FROM usuario u, roles r WHERE u.idrol=r.idrol AND u.estado = 1 ORDER BY u.idusuario";
+	public function obtenerUsuarios($estado){
+		$consulta = "SELECT u.idusuario, u.foto, u.nombre, u.usuario, u.email, u.estado, r.cargo FROM usuario u, roles r WHERE u.idrol=r.idrol AND u.estado = $estado ORDER BY u.idusuario";
 		$resultado = mysqli_query($this->getConexion(),$consulta);
         $this->cerrarConexion();
         $listaUsuarios = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+		echo $consulta;
 		return $listaUsuarios;
 	}
 	public function obteniendoUsuariosPorId($id){
@@ -51,8 +52,8 @@ class entidadUsuario extends Conexion{
 		return $resultado;
 		
 	}
-	public function habilitarInhabilitarUsuario($idusuario,$estado){
-		$consulta3 = "UPDATE usuario SET estado=0 WHERE idusuario=$idusuario" ;
+	public function cambiarEstado($idusuario,$estado){
+		$consulta3 = "UPDATE usuario SET estado=$estado WHERE idusuario=$idusuario" ;
 		$resultado = mysqli_query($this->getConexion(),$consulta3);
 		$this->cerrarConexion();
 	}

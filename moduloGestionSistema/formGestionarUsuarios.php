@@ -29,6 +29,15 @@ class formGestionarUsuarios
                         document.write(diasSemana[f.getDay()] + ", " + f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
                     </script>
                 </p>
+                <form action="getUsuarios.php" method="POST">
+                    Buscar por tipo de usuario: 
+                    <select name="tipoUsuario" onchange="this.form.submit()">
+                        <option value="" selected>Todo</option>
+                        <option value=1>Activos</option>
+                        <option value=0>Innactivos</option>
+                    </select>
+                    
+                </form>
                 <table class="table">
                     <thead>
                         <tr>
@@ -52,9 +61,14 @@ class formGestionarUsuarios
                             echo '<td>';
                             echo        '<form action=getUsuarios.php method=post>';
                             echo            '<input type=hidden name=idusuario value='.$user['idusuario'].'>';
-                            echo            '<input type=hidden name=estado value='.$user['estado'].'>';
                             echo            '<input class=modificar type=submit name=btnModificar value=Modificar>';
+                            if($user['estado']==1) {
                             echo            '<input  class=inhabilitar  type=submit name=btnInhabilitar value=Inhabilitar>';
+                            echo '<input type=hidden name=estado value=0>'; 
+                            } else {
+                            echo            '<input  class=inhabilitar  type=submit name=btnInhabilitar value=Habilitar>';
+                            echo '<input type=hidden name=estado value=1>'; 
+                            }
                             echo        '</form>';
                             echo '</td>';
                         }
