@@ -34,7 +34,7 @@ class formGestionarUsuarios
                 </p>
                 <form action="getUsuarios.php" method="POST">
                     Buscar por tipo de usuario: 
-                    <select name="tipoUsuario" onchange="this.form.submit()">
+                    <select class="selectusuario" name="tipoUsuario" onchange="this.form.submit()">
                         <option value="" selected>Todo</option>
                         <option value=1>Activos</option>
                         <option value=0>Innactivos</option>
@@ -77,7 +77,7 @@ class formGestionarUsuarios
                         }
                         ?>
                 </table>
-                <div style="display: flex;">
+                <div class="div_btn" style="display: flex;">
                     <form action="getUsuarios.php" method="POST">
                         <input  class="volver" type="submit" name="btnRegistrarUsuario" value="Registrar">
                     </form>

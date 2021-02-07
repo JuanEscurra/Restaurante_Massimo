@@ -32,9 +32,9 @@ class formAgregarCliente{
                     <div class="header">
                         <div class="div-nombre_negocio">
                             <img src="../img/nombre_logo_2.png" height="80" width="190">
-                            <p>Av. Siempre via #456 - Surco - Lima</p>
-                            <p>Telf.: 677899900 / Cel.: 677788999</p>
-                            <p>Email: ventas@dominio.com</p>                    
+                            <p>Jirón César Vallejo, El Agustino 15004-Lima</p>
+                            <p>Cel: 912 380 794</p>
+                            <p>Email: massimo@gmail.com</p>                    
                         </div>    
                         <div class="datos_negocio">
                             <h1 class="ruc">RUC: 10726573323</h1>

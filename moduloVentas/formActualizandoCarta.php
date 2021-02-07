@@ -16,7 +16,7 @@
             </head>
             <body>
                 <div class="div-header">
-                     <img src="../img/logo_header.png" height="100" width="230">
+                    <img src="../img/logo_header.png" height="100" width="230">
                     <form action="getCarta.php" method="POST">
                         <input type="submit" name="bntActualizar" value="Atras" class="volver">
                     </form>
@@ -24,22 +24,30 @@
                 <h1 class="titulo">Actualizando Carta del dia</h1>
 
                 <!-- Button trigger modal -->
-                <form action="getCarta.php">
-                    Buscar por tipo de producto: 
-                    <select name="tipoProducto" onchange="this.form.submit()">
-                        <option value="entrada" selected>Todo</option>
-                        <option value="entrada">Entrada</option>
-                        <option value="segundo">Segundo</option>
-                        <option value="sopa">Sopa</option>
-                        <option value="bebida">Bebida</option>
-                        <option value="gaseosa">Gaseosa</option>
-                    </select>
-                </form>
+                <div class="div_buscar">
+                    <form action="getCarta.php">
+                        Buscar por tipo de producto: 
+                        <select class="selectproducto" name="tipoProducto" onchange="this.form.submit()">
+                            <option value="entrada" selected>Todo</option>
+                            <option value="entrada">Entrada</option>
+                            <option value="segundo">Segundo</option>
+                            <option value="sopa">Sopa</option>
+                            <option value="bebida">Bebida</option>
+                            <option value="gaseosa">Gaseosa</option>
+                        </select>
+                    </form>
+                
 
+                     <form class="b2" action="getCarta.php" method="POST">
+                        <input class="input" type="text" name="nombre" placeholder="Ingrese nombre del producto">
+                        <input class="buscar" type="submit" name="btnBuscarProducto" value="Buscar">
+                    </form>
+                </div>
+                
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Registrar producto
+                        Registrar producto
                 </button>
-
+                
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -84,10 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="getCarta.php" method="POST">
-                    <input type="text" name="nombre" placeholder="Ingrese nombre del producto">
-                    <input type="submit" name="btnBuscarProducto" value="Buscar">
-                </form>
+               
                 
                 <form action="getCarta.php" method="POST">
                     <input type="submit" name="bntReiniciarCarta" value="Reiniciar carta" class="volver">
@@ -142,7 +147,7 @@
                                         <option value='0' selected>Deshabilitado</option>"; 
                                     }
                                     echo "</select></td>";
-                                    echo "<td><input type='submit' name='btnModificarProducto' value='Modificar'></td>";
+                                    echo "<td><input class='modificar' type='submit' name='btnModificarProducto' value='Modificar'></td>";
                                 echo "</tr></form>";
                             }
 

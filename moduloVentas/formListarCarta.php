@@ -23,14 +23,14 @@
                 </div>
 
                 <h1 class="titulo">Carta</h1>
-                <p>Dia: 
+                <p class="fecha">Dia: 
                     <script>
                         var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                         var f=new Date();
                         document.write(f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
                     </script>
                 </p><br>
-                <form action="getCarta.php" method="POST">
+                <form  action="getCarta.php" method="POST">
                     <input class="agregar" type="submit" value="Actualizar" name="btnAActualizar">
                 </form>
                 <div class="div-col">
