@@ -1,4 +1,5 @@
 <?php
+
 class formEmitirComanda{
     public function formEmitirComandaShow($listarComandas){
 ?>
@@ -45,6 +46,8 @@ class formEmitirComanda{
                                     <?php
                                         $i=0;
                                         foreach ($listarComandas as $comanda) {
+                                            $mesa[$i]=$comanda['numeroMesa'];
+
                                         $i++;
                                         echo "
                                             <tr>
@@ -62,12 +65,14 @@ class formEmitirComanda{
                                                 </td>
                                                 <td>
                                                     <form action=getComanda.php method=post>
-                                                    <input class='volver' type=submit name=btn value=Atender>
+                                                    <input class='volver' type=submit name=btnAtenderComanda value=Atender>
                                                     <input type=number name=idComanda value=$comanda[idcomanda] readonly required hidden>
                                                     </form>
                                                 </td>
                                             </tr>";
                                         }
+                                        
+                                        $_SESSION['mesas']=$mesa;
                                     ?>
                                 </tbody>
                             </table>

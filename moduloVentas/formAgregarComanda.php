@@ -56,19 +56,35 @@ class formAgregarComanda
                     
                 </form>
 
-                
                 <form class="form-f" action="../moduloVentas/getComanda.php" method="post">
-                    <input class="input" type="text" name="NumeroMesa" placeholder="Numero de mesa" required>
-                    <input class="agregar" type="submit" name="btnCrearComanda" value="Crear Comanda">
-                </form>
-            </div>
+                    <select class="input"  name="NumeroMesa" placeholder="Numero de mesa" >
+                            <?php
+
+                            for($j=1;$j<11;$j++) {
+
+                                if(!in_array($j,$_SESSION['mesas'])){
+            
+                            ?>  
+                                <option  value="<?php echo $j ?>"><?php echo $j ?></option> 
+                            <?php 
+                                }
+                            }?>
+                            
+                        </select>
+                
+            
         
         <?php
         if (!isset($_SESSION)||empty($_SESSION['listaProductos'])) {
             
         }
         else{
-        ?>
+            
+        ?>  
+                    
+                    <input class="agregar" type="submit" name="btnCrearComanda" value="Crear Comanda">
+                </form>
+                </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -109,4 +125,4 @@ class formAgregarComanda
         }
     }
 }
-?>     
+?>

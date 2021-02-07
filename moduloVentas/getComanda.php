@@ -20,6 +20,11 @@ if (isset($_POST['btnEmitirComanda'])){
     $nuevoControl = new controlComanda;
     $nuevoControl->AgregarComanda();
 
+}elseif (isset($_POST['btnAtenderComanda'])){
+    
+    $nuevoControl = new controlComanda;
+    $nuevoControl->AtenderComanda($_POST['idComanda']);
+
 }elseif (isset($_POST['btnAgregarProductoComanda'])){
     
     $nuevoControl = new controlComanda;

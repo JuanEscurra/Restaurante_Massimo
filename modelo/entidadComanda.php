@@ -72,6 +72,10 @@
             $queryComandas = "UPDATE comanda set estado = 'eliminada' where idcomanda=$idcom";
             $resultado = mysqli_query($this->getConexion(),$queryComandas);
             $this->cerrarConexion();
+        }public function actualizarComandaestadoAtendido($idcom){
+            $queryComandas = "UPDATE comanda set estado = 'Atendido' where idcomanda=$idcom";
+            $resultado = mysqli_query($this->getConexion(),$queryComandas);
+            $this->cerrarConexion();
         }
     }
 ?>

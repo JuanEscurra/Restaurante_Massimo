@@ -80,6 +80,7 @@ class controlComanda
         $comanda = new entidadComanda;
         $detalleComanda = new entidadDetalleComanda;
         $comanda->insertarComanda($NumeroMesa,0);
+        //
         $idMax = $comanda->obtenerIdMaxProforma();
         $detalleComanda->insertarDetalleComanda($idMax[0]["idcomanda"], $arrayProductos);
         unset($_SESSION['listaProductos']);
@@ -111,13 +112,13 @@ class controlComanda
         $this->buscarStockActualizado($Prod[0]['idProducto'],$idComanda);
                 
     }
-    /*public function calcularTotal($arrayProductos = []){
-        $cantidadTotal = 0;
-        foreach ($arrayProductos as $producto) {
-            $cantidadTotal = $cantidadTotal + $producto['precio'] * $producto['cantidad'];
-        }
-        return $cantidadTotal;
-    }*/
+    public function AtenderComanda($idComanda){
+        //1
+        $entidadComanda = new entidadComanda;
+        $entidadComanda->actualizarComandaestadoAtendido($idComanda);
+        $this->listarComandas();
+        
+    }
     public function  EliminarProductoModificado($idDetalleComanda,$idComanda,$idProducto,$Cantidad){
         //1//2//3//6
         $entidadComanda=new entidadComanda;
