@@ -51,7 +51,7 @@ class formEmitirComprobante{
                                                 
                                         echo"<td>
                                                     <form action=getComprobante.php method=post>
-                                                    <input class='volver' type=submit name=btnRegistrar value=Emitir Comprobante>
+                                                    <input class='volver' type=submit name=btnEmitir value=Emitir>
                                                     <input type=number name=idComanda value=$comanda[idcomanda] readonly required hidden>
                                                     </form>
                                                 </td>
