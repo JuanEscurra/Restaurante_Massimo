@@ -13,7 +13,14 @@
 			$nuevoAcceso = new controlAutenticarUsuario;
 			$nuevoAcceso -> verificarUsuario($usuario,$pass);
 		}
-	}elseif(isset($_POST['btnInicio'])){
+	} elseif(isset($_POST['btnCerrarSesion'])) {
+		session_start();
+		$_SESSION = array();
+		session_destroy();
+		header('Location: ../index.php');
+		die();
+	}
+	elseif(isset($_POST['btnInicio'])){
 		if(isset($_SESSION['rol']) and isset($_SESSION['id_usuario']) and isset($_SESSION['nombre_usuario'])){
 			$rol = $_SESSION['rol'];
 			$nombre_usuario = $_SESSION['nombre_usuario'];
@@ -22,8 +29,13 @@
 			$nuevoInicio = new controlAutenticarUsuario;
 			$nuevoInicio -> obtenerPrivilegios($rol);
 		}
+	} 
+	elseif(isset($_SESSION['nombre_usuario'])) {
+		include_once("../moduloSeguridad/controlAutenticarUsuario.php");
+		$nuevoAcceso = new controlAutenticarUsuario;
+		$nuevoAcceso -> ingresandoUsuarioLogeado($_SESSION['nombre_usuario']);
 	}
-	else{
+	else {
 		include_once("../shared/formMensajeSistema.php");
 		$nuevoMensaje = new formMensajeSistema;
 		$nuevoMensaje -> formMensajeSistemaShow("Acceso no permitido","<a href = '../index.php'>ir al inicio</a");

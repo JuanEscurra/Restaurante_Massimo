@@ -6,11 +6,7 @@ if (isset($_POST['btnEntrar'])){
 	$entrar = new controlAutenticarUsuario;
 	$entrar -> entrar();
 	//echo "ok";
-} elseif(isset($_POST['btnCerrarSesion'])) {
-	session_start();
-	header('Location: ../index.php');
-	die();
-}
+} 
 else
 {
 	include_once("../shared/formMensajeSistema.php");

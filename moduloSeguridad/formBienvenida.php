@@ -14,7 +14,7 @@
 				<body>
 					<div class="logo">
 							<img src="../img/logo_header.png" height="100" width="230">
-							<form action="getEntrar.php" method="POST">
+							<form action="getUsuario.php" method="POST">
 								<input type="submit" name="btnCerrarSesion" value="Cerrar Sesión">
 							</form>
 					</div>

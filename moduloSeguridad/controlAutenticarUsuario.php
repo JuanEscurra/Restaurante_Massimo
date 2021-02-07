@@ -32,6 +32,17 @@
 			$objformBienvenida -> formBienvenidaShow($Privilegios,$idrolprivi);
 		}
 
+		public function ingresandoUsuarioLogeado($nombre) {
+				include_once("../modelo/entidadUsuarioPrivilegio.php");
+				include_once("../moduloSeguridad/formBienvenida.php");
+				include_once("../modelo/entidadUsuario.php");
+				$objUsuario2 = new entidadUsuario;
+				$objUsuarioPrivilegio = new entidadUsuarioPrivilegio;
+				$objformBienvenida = new formBienvenida;
+				$rol = $objUsuario2 -> obtenerRol($nombre);
+				$Privilegios = $objUsuarioPrivilegio -> obtenerPrivilegios($rol);
+				$objformBienvenida -> formBienvenidaShow($Privilegios,$rol);
+		}
 		public function entrar()
 		{
 			include_once("../moduloSeguridad/formValidarDni.php");
