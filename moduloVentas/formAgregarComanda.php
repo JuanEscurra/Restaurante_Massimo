@@ -59,16 +59,18 @@ class formAgregarComanda
                 <form class="form-f" action="../moduloVentas/getComanda.php" method="post">
                     <select class="input"  name="NumeroMesa" placeholder="Numero de mesa" >
                             <?php
+                                $j=1;
+                            for($j;$j<11;$j++) {
 
-                            for($j=1;$j<11;$j++) {
-
-                                if(!in_array($j,$_SESSION['mesas'])){
+                                if(!in_array($j,$_SESSION['mesa'])){
             
                             ?>  
                                 <option  value="<?php echo $j ?>"><?php echo $j ?></option> 
                             <?php 
                                 }
-                            }?>
+                            }
+                            
+                            ?>
                             
                         </select>
                 

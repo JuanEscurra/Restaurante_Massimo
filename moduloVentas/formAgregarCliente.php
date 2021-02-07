@@ -1,6 +1,6 @@
 <?php
 class formAgregarCliente{
-    public function formAgregarClienteShow($listaComandas){
+    public function formAgregarClienteShow($listaComandas,$idcomanda){
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -20,17 +20,16 @@ class formAgregarCliente{
                             </form>
                 </div>
                     <h1 class="titulo">Boletas</h1>
-                    <form>
-                Tipo de Comprobante: <select>
-                <option>Boleta</option>
-                <option>Factura</option>
+                <form action="getComprobante.php" method="POST">
+                
+                Tipo de Comprobante: <select name="opcComp">
+                <option value="Boleta">Boleta</option>
+                <option value="Factura">Factura</option>
                 </select><br><br>
-
                 Serie:  <input type="text" name="sr"><br><br>
                 Numero: <input type="text" name="nmr"><br><br>
                 Nombre de Cliente:  <input type="text" name="nombre"><br><br>
-                DNI: <input type="text" name="dni"><br><br>
-                </form>
+                DNI: <input type="text" name="dni">
                     <?php
                         if ($listaComandas==null) {
                                 echo 'no se encontro datos';
@@ -57,20 +56,25 @@ class formAgregarCliente{
                                                 <td>" . $comanda['cantidad'] . "</td>
                                                 <td>" . $comanda['nombre'] . "</td>
                                                 <td>" . $comanda['precio'] . "</td>
-                                                <td>" . $comanda['valor'] . "</td>;
+                                                <td>" . $comanda['valor'] . "</td>
                                             </tr>";
                                         }
                                     ?>
                                 </tbody>
                             </table>
-                            
-                        <?php
-                    }?>
+                            <?php
+                            }?>
+                            Resumen:<br>
+                            Total: <input type="text" name="pago"><br>
+                            Descuento: <input type="text"  name="dsct" value="0"><br>
+                            Vuelto: <input type="text"  name="vlt" value="0"><br>
+                            <input type=number name="idComanda" value= readonly required hidden>
+                            <input type="submit" value="Procesar" name="btnInsertar">
+                    </form>
                         </body>
                     </html> 
                     <?php
                 }
-
 
             }    
         ?>
