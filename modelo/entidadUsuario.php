@@ -35,7 +35,6 @@ class entidadUsuario extends Conexion{
 		$resultado = mysqli_query($this->getConexion(),$consulta);
         $this->cerrarConexion();
         $listaUsuarios = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
-		echo $consulta;
 		return $listaUsuarios;
 	}
 	public function obteniendoUsuariosPorId($id){

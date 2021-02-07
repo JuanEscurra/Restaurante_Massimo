@@ -44,10 +44,15 @@ $control = new controlGestionarUsuarios;
         $email = $_POST['email'];
         $usuario = substr($nombre,0,3).substr($dni,0,3).substr($email,0,3);
         $rol = $_POST['rol'];
+        if($rol==1){
+            $foto = '../img/cajero.png';
+        }elseif($rol==2){
+            $foto = '../img/recepcionista.png';
+        }else{
+            $foto = '../img/administrador.png';
+        }
         $pass = md5($_POST['pass']);
         $secreto = substr($nombre,0,3).substr($dni,0,3);
-        $foto = $_FILES;
-        var_dump($_FILES);
         $control -> registrandoUsuario($nombre,$usuario,$dni,$foto,$rol,$pass,$email,$secreto);
     }
     elseif (isset($_POST['btn'])) {

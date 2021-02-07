@@ -39,8 +39,8 @@ class registrarUsuario{
                         <label for="pass">Contraseña</label>
                         <input class="input" minlength="6" type="password" name="pass" placeholder="Ingrese contraseña">
 
-                        <label for="imgPerfil">Foto: </label>
-                        <input type="file" name="imgPerfil" required>
+                        <!-- <label for="imgPerfil">Foto: </label>
+                        <input type="file" name="imgPerfil" required> -->
 
                         <input class="agregar" type="submit" value="Registrar usuario" name="btnRegistrandoUsuario">
                     </form>

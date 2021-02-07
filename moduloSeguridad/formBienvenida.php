@@ -14,6 +14,9 @@
 				<body>
 					<div class="logo">
 							<img src="../img/logo_header.png" height="100" width="230">
+							<form action="getEntrar.php" method="POST">
+								<input type="submit" name="btnCerrarSesion" value="Cerrar Sesión">
+							</form>
 					</div>
 				   <div class="div-div">
 						<div class="contenedor-privilegios">
