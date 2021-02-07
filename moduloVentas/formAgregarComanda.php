@@ -34,12 +34,14 @@ class formAgregarComanda
                 <form action="../moduloVentas/getComanda.php" method="post">
                         <select class="input"  name="idProducto" onchange="this.form.submit()">
                             <?php
+                            
                             if($listaProductos==NULL){
-                                $_SESSION['nombre']="";
+                                $_SESSION['nombreProducto']="";
                                 $_SESSION['stock']=0;
                             }
                             ?>
-                            <option requered><?php echo $_SESSION['nombre'] ?></option>
+                            <option selected><?php if(isset($_SESSION['nombreProducto'])){
+                                echo $_SESSION['nombreProducto'];} ?></option>
                             <?php  
                             foreach ($listaProductos as $value) { ?>
                             <option  value="<?php echo $value['idProducto'] ?>"><?php echo $value['nombre'] ?></option> 

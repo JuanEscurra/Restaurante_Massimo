@@ -9,7 +9,7 @@
 					<title>Formulario Bienvenida</title>
 					<meta http-equiv="Expires" content="0">
 					<link rel="stylesheet" href="../estilos/gestionarUsuarios.css">
-                	<link rel="stylesheet" href="../estilos/estilos_generales.css">
+                	
                 	<link rel="shorcut icon" type="image/x-icon" href="../img/ico   no.ico">
 					<link rel="shorcut icon" type="image/x-icon" href="../img/icono.ico">
 				    <link rel="stylesheet" href="../estilos/estilos_generales.css">
@@ -21,7 +21,7 @@
 
                             <h3 class="text_usuario">Usuario: <?php echo $_SESSION['nombre_usuario'] ?></h3>
 							<form action="getUsuario.php" method="POST">
-								<input type="submit" name="btnCerrarSesion" value="Cerrar Sesión">
+								<input class="volver" type="submit" name="btnCerrarSesion" value="Cerrar Sesión">
 							</form>
 					</div>
 				   <div class="div-div">
