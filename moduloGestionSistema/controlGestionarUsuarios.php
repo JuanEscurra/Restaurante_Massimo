@@ -59,4 +59,10 @@ class controlGestionarUsuarios{
             $nuevoMensaje -> formMensajeSistemaShow("Error al actualizar","<a href='../shared/formBienvenida.php'>Bienvenida</a>");
         }
     }
+
+    public function validarDNI($dni) {
+        $usuario = new entidadUsuario;
+        $resultado =$usuario->validarDni($dni);
+        echo $resultado;
+    }
 }

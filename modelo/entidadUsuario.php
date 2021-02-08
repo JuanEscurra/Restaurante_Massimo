@@ -117,5 +117,18 @@ class entidadUsuario extends Conexion{
 			return(0);*/
 		//return $resultado -> fetch_all()[0]; 
 	}
+
+	public function validarDni($dni) {
+		$consulta = "SELECT *
+					 FROM usuario
+					 WHERE dni = $dni";
+		$resultado = mysqli_query($this->getConexion(),$consulta);
+		$this->cerrarConexion();
+		$aciertos = mysqli_num_rows($resultado);
+		return $aciertos; 
+	}
+
+	
 }
 ?>
+

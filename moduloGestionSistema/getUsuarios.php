@@ -57,18 +57,23 @@ $control = new controlGestionarUsuarios;
     }
     elseif (isset($_POST['btn'])) {
             $rol = $_POST['idrol'];
-                include_once("../modelo/entidadUsuarioPrivilegio.php");
-                include_once("../moduloSeguridad/formBienvenida.php");
-                include_once("../modelo/entidadUsuario.php");
-                $objUsuario2 = new entidadUsuario;
-                $objUsuarioPrivilegio = new entidadUsuarioPrivilegio;
-                $objformBienvenida = new formBienvenida;
-                $Privilegios = $objUsuarioPrivilegio -> obtenerPrivilegios($rol);
-                $objformBienvenida -> formBienvenidaShow($Privilegios);
-        }
+            include_once("../modelo/entidadUsuarioPrivilegio.php");
+            include_once("../moduloSeguridad/formBienvenida.php");
+            include_once("../modelo/entidadUsuario.php");
+            $objUsuario2 = new entidadUsuario;
+            $objUsuarioPrivilegio = new entidadUsuarioPrivilegio;
+            $objformBienvenida = new formBienvenida;
+            $Privilegios = $objUsuarioPrivilegio -> obtenerPrivilegios($rol);
+            $objformBienvenida -> formBienvenidaShow($Privilegios);
+    } elseif(isset($_GET['validarDni'])) {
+        $control->validarDNI($_GET['validarDni']);
+    }
     else{
+        var_dump($_POST);
         include_once('../shared/formMensajeSistema.php');
         $nuevoMensaje = new formMensajeSistema;
         $nuevoMensaje -> formMensajeSistemaShow("Acceso no Permitido","<a href='../index.php'>Iniciar Sesion</a>");
     }
+
+// var_dump($_POST);
 ?>
