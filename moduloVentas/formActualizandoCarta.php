@@ -77,11 +77,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="precio" class="form-label">Precio: </label>
-                                    <input type="text" name="precio" class="form-control" id="precio" required>
+                                    <input type="number" name="precio" class="form-control" id="precio" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="stock" class="form-label">Stock: </label>
-                                    <input type="text" name="stock" class="form-control" id="stock" required>
+                                    <input type="number" name="stock" class="form-control" id="stock" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
