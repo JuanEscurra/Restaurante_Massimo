@@ -10,4 +10,11 @@ class controladorReporte {
         $formEmitirReporte = new formEmitirReporte;
         $formEmitirReporte->formEmitirReporteShow($listaBoletas);
     }
+    public function BuscarReporte($fecha) {
+
+        $entidadBoleta = new entidadBoleta;
+        $listaBoletas = $entidadBoleta->listarBoletasPorFecha($fecha);
+        $formEmitirReporte = new formEmitirReporte;
+        $formEmitirReporte->formEmitirReporteShow($listaBoletas);
+    }
 }

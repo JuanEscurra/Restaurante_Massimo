@@ -15,7 +15,15 @@ class entidadBoleta extends Conexion{
         }
 
     public function listarBoletas(){
-        $queryComandas = "SELECT * from boleta where DATE(fecha) = curdate()";
+        $queryComandas = "SELECT * from boleta where DATE(fecha) = curdate()  ";
+        $resultado = mysqli_query($this->getConexion(),$queryComandas);
+        $this->cerrarConexion();
+        $resultados = mysqli_fetch_all($resultado,MYSQLI_ASSOC);
+        
+        return $resultados;
+    }
+    public function listarBoletasPorFecha($fecha){
+        $queryComandas = "SELECT * from boleta where DATE(fecha) = '$fecha' ";
         $resultado = mysqli_query($this->getConexion(),$queryComandas);
         $this->cerrarConexion();
         $resultados = mysqli_fetch_all($resultado,MYSQLI_ASSOC);

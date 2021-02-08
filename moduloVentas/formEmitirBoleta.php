@@ -109,7 +109,7 @@ class formAgregarCliente{
                                 }?>
                                 <div class="datos_2">
                                     <label>Resumen </label> <br>
-                                    <label for=""> Total: </label>
+                                    <label for=""> Total: S/. </label>
                                     <input type="text"  name="pago" value="<?php echo $listacomanda[0]['total'] ?>"><br>
                                     
                                 </div>

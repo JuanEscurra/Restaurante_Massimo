@@ -1,6 +1,8 @@
 <?php
+
 class formEmitirReporte {
     public function formEmitirReporteShow($listaBoletas){
+        
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -14,7 +16,7 @@ class formEmitirReporte {
             </head>
             <style>
             @media print{
-                .volver,.div-header{
+                .volver,.x,.buscar,.input,.div-header{
                     display: none;
                 }
 
@@ -28,6 +30,10 @@ class formEmitirReporte {
                             </form>
                 </div>
                     <h1 class="titulo">Lista de Boletas</h1>
+                    <form  action="getReporte.php" method="POST">
+                            <input class="input" type="date" name="fechaReporte" >
+                            <input class="buscar" type="submit" name="btnBuscarReporte" value="Buscar">
+                            </form>
                     <?php 
                         if ($listaBoletas==null) {
                                 echo 'no se encontro datos';
@@ -64,11 +70,16 @@ class formEmitirReporte {
                                     ?>
                                 </tbody>
                                 <center>
-                                Total : <?php echo $Total; ?>
+                                    <br>
+
+                                Total : S/. <?php echo $Total; ?>
                             </center>
+
                             <input class="volver" type="submit" value="Reporte" name="btnEmitirReporte" onclick="print()">
                             <br>
+                            
                             </table>
+
                             
                         <?php
                         }

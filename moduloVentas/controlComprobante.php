@@ -4,7 +4,7 @@ include_once("../modelo/entidadComanda.php");//2
 include_once("../modelo/entidadDetalleComanda.php");
 include_once("../modelo/entidadProducto.php");//3
 include_once("../moduloVentas/formEmitirComprobante.php");//5
-include_once("../moduloVentas/formAgregarCliente.php");//6
+include_once("../moduloVentas/formEmitirBoleta.php");//6
 
 
 class controlComprobante
