@@ -17,7 +17,10 @@ if(isset($_POST['bntActualizar']) or isset($_POST['btnRegresarEstado'])){
     $objActualizar->buscarProducto($_POST['nombre']);
 } elseif(isset($_POST['bntReiniciarCarta'])) {
     $objActualizar->reiniciarCarta();
-} else {
+} elseif(isset($_GET['validarProducto'])) {
+    $objActualizar->validarProducto($_GET['validarProducto']);
+}
+else {
     include_once('../shared/formMensajeSistema.php');
     $nuevoMensaje = new formMensajeSistema;
     $nuevoMensaje -> formMensajeSistemaShow("Acceso no Permitido","<a href='../index.php'>Iniciar Sesion</a>");

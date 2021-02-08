@@ -88,5 +88,15 @@
             $this->cerrarConexion();
         }
         
+        public function validarProducto($nombre) {
+            $consulta = "SELECT *
+					 FROM producto
+					 WHERE nombre = '$nombre'";
+            $resultado = mysqli_query($this->getConexion(),$consulta);
+            $this->cerrarConexion();
+            $aciertos = mysqli_num_rows($resultado);
+            return $aciertos; 
+        }
     }
+
 ?>

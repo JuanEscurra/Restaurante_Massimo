@@ -56,42 +56,17 @@ class registrarUsuario{
                         formAgregarUsuario.addEventListener("submit", (form)=> {
                             form.preventDefault();
                             var datos = new FormData(formAgregarUsuario);
-                            console.log(datos.get('dni'));
                             fetch("getUsuarios.php?validarDni="+datos.get('dni'))
                                 .then(response => response.text())
                                 .then(data => {
                                     if(data==0) {
-                                        console.log("se procesa");
                                         mensajeFormulario.innerHTML = "";
-                                        const btnSubmit = document.querySelector('#btnRegistrandoUsuario');
-                                        btnSubmit.value = "presionado";
                                         formAgregarUsuario.submit();
                                     } else {
-                                        console.log("no se procesa");
                                         mensajeFormulario.innerHTML="El dni ya está registrado";
                                     }
                                 });
-                            // console.log(respuesta);
-                            // console.log(respuesta.then(res => res));
                         });
-
-                        // function getData(dni) {
-                        //     var resultado;
-                        //     fetch("getUsuarios.php?validarDni="+dni)
-                        //         .then(response => response.text())
-                        //         .then(data => {
-                        //             if(data==0) {
-                        //                 console.log("se procesa");
-                        //                 mensajeFormulario.innerHTML = "";
-                        //                 resultado = 0;
-                        //             } else {
-                        //                 console.log("no se procesa");
-                        //                 mensajeFormulario.innerHTML="El dni ya está registrado";
-                        //                 resultado = 1;
-                        //             }
-                        //         });
-                        //     return resultado;
-                        // }
                     </script>
                 </div>
             </body>

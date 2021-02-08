@@ -56,9 +56,9 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo producto</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="getCarta.php" method="post" class="needs-validation">
+                            <form action="getCarta.php" id="formAgregarProducto" method="post" class="needs-validation">
                             <div class="modal-body">
-                                
+                            <input hidden type="text" name="btnRegistrarProducto" value="Registrar nuevo producto">
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre: </label>
                                     <input type="text" name="nombre" class="form-control" id="nombre" required>
@@ -77,12 +77,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="precio" class="form-label">Precio: </label>
-                                    <input type="number" name="precio" class="form-control" id="precio" required>
+                                    <input type="number" name="precio" class="form-control" id="precio" step="0.01" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="stock" class="form-label">Stock: </label>
                                     <input type="number" name="stock" class="form-control" id="stock" required>
                                 </div>
+                                <p id="mensajeFormulario" style="color:red"></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -157,7 +158,25 @@
                     <?php
                 }
                 ?>
-
+                <script>
+                const formAgregarProducto = document.querySelector('#formAgregarProducto');
+                const mensajeFormulario = document.querySelector('#mensajeFormulario');
+                console.log(formAgregarProducto);
+                formAgregarProducto.addEventListener("submit", (form)=> {
+                    form.preventDefault();
+                    var datos = new FormData(formAgregarProducto);
+                    fetch("getCarta.php?validarProducto="+datos.get('nombre'))
+                        .then(response => response.text())
+                        .then(data => {
+                            if(data==0) {
+                                mensajeFormulario.innerHTML = "";
+                                formAgregarProducto.submit();
+                            } else {
+                                mensajeFormulario.innerHTML="El producto ya está registrado";
+                            }
+                        });
+                });
+                </script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
             </body>
             </html>

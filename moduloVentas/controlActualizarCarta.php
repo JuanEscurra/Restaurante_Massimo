@@ -52,5 +52,12 @@ class actualizarCarta{
         $objProducto->deshabilitarProductos();
         $this->listarProductos();
     }
+
+    public function validarProducto($nombre) {
+
+        $objProducto = new entidadProducto;
+        $resultado = $objProducto->validarProducto($nombre);
+        echo $resultado;
+    }
 }
 ?>
