@@ -30,7 +30,7 @@ class formAgregarComanda
             <h1 class="titulo">Numero de mesa</h1>
             <div class="form-div">
                 
-                
+                <label for="">Producto : </label>
                 <form action="../moduloVentas/getComanda.php" method="post">
                         <select class="input"  name="idProducto" onchange="this.form.submit()">
                             <?php
@@ -47,6 +47,7 @@ class formAgregarComanda
                             <option  value="<?php echo $value['idProducto'] ?>"><?php echo $value['nombre'] ?></option> 
                             <?php } ?>
                         </select> 
+                        <label for="">Cantidad del Producto : </label>
                         <select class="input"  name="CantidadProducto" >
                             <?php  $i=1;
                             for($i;$i<=$_SESSION['stock'];$i++) { ?>
@@ -57,9 +58,10 @@ class formAgregarComanda
                     <input  class="agregar" type="submit" name="btnAgregarProductoComanda" value="Agregar">
                     
                 </form>
-
-                <form class="form-f" action="../moduloVentas/getComanda.php" method="post">
-                    <select class="input"  name="NumeroMesa" placeholder="Numero de mesa" >
+                <br>
+                <label for="">Mesa : </label>
+                <form  action="../moduloVentas/getComanda.php" method="post">
+                    <select  class="input"  name="NumeroMesa" >
                             <?php
                                 $j=1;
                             for($j;$j<11;$j++) {
@@ -74,7 +76,7 @@ class formAgregarComanda
                             
                             ?>
                             
-                        </select>
+                    </select>
                 
             
         
